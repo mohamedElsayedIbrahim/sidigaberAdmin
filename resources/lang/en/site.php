@@ -9,6 +9,6 @@ return [
     'copyright' => 'All copyrights are reserved to',
     'company' => 'SidiGaber',
     'summary' => 'The Sidi Gaber Mosque Charitable Association was established under the supervision of the Ministry of Social Solidarity - the Directorate of Social Affairs under No. 371 of 1971, located at 2 Abdullah Al-Ansari Street, next to the Sidi Gaber Mosque, with several goals in social development.',
-    'welcome' => 'Welcome to our service, Login please.'
-    
+    'welcome' => 'Welcome to our service, Login please.',
+    'welcomeUser'=>'welcome'
 ];

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::middleware('site.lang')->group(function(){
 
+
+Route::get('/', 'AuthController@login')->name('home');
+Route::post('/handel/login','AuthController@handel_login')->name('login.handel');
+
+Route::get('/ar', 'LangController@ar')->name('lang.ar');
+Route::get('/en', 'LangController@en')->name('lang.en');
+
+
+Route::middleware('is.admin')->group(function(){
+    /*
+    users links
+    */
+    Route::get('/logout', 'AuthController@logout')->name('logout');
+    /*
+    app board links
+    */
+    Route::get('/app', 'siteController@board')->name('app.board');
+});
+
+
+});
