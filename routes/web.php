@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LangController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,7 @@ Route::get('/ar', 'LangController@ar')->name('lang.ar');
 Route::get('/en', 'LangController@en')->name('lang.en');
 
 
-Route::middleware('is.admin')->group(function(){
+Route::middleware('is.login')->group(function(){
     /*
     users links
     */
@@ -33,6 +34,8 @@ Route::middleware('is.admin')->group(function(){
     app board links
     */
     Route::get('/app', 'siteController@board')->name('app.board');
+
+    Route::get('/student','StudentController@index')->name('app.student');
 });
 
 
