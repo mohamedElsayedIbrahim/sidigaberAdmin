@@ -14,7 +14,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route("app.board")}}">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Student Payment</li>
+          <li class="breadcrumb-item active" aria-current="page">Student Bus</li>
         </ol>
     </nav>
 </div>
@@ -31,7 +31,7 @@
                         <th>#</th>
                         <th>National Number</th>
                         <th>Student name</th>
-                        <th>Recipt Image</th>
+                        <th>Bus Recipt Image</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -58,8 +58,5 @@
             </table>
             
         @endif
-
-
-
-
+        
 @endsection

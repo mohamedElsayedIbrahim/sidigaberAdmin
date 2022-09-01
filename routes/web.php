@@ -18,8 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('site.lang')->group(function(){
 
 
-Route::get('/', 'AuthController@login')->name('home');
-Route::post('/handel/login','AuthController@handel_login')->name('login.handel');
+    Route::middleware('is.guest')->group(function(){
+
+        Route::get('/', 'AuthController@login')->name('home');
+        Route::post('/handel/login','AuthController@handel_login')->name('login.handel');
+    });
 
 Route::get('/ar', 'LangController@ar')->name('lang.ar');
 Route::get('/en', 'LangController@en')->name('lang.en');
@@ -36,6 +39,7 @@ Route::middleware('is.login')->group(function(){
     Route::get('/app', 'siteController@board')->name('app.board');
 
     Route::get('/student','StudentController@index')->name('app.student');
+    Route::get('/student/bus','StudentController@bus')->name('app.student.bus');
 });
 
 
