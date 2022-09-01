@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    App Board
+    App | Student
 @endsection
 
 @section('header')
