@@ -15,11 +15,11 @@
             @csrf
 
             <div class="col-md-12 mb-3">
-              <label for="exampleInputEmail1" class="form-label text-capitalize">user name</label>
+              <label for="exampleInputEmail1" class="form-label text-capitalize">@lang('login.username')</label>
               <input type="text" maxlength="100" minlength="3" name="name" required  class="form-control" id="exampleInputEmail1">
             </div>
             <div class="col-md-12 mb-3">
-              <label for="exampleInputPassword1" class="form-label text-capitalize">Password</label>
+              <label for="exampleInputPassword1" class="form-label text-capitalize">@lang('login.password')</label>
               <input type="password" maxlength="30" minlength="5" name="password" required class="form-control" id="exampleInputPassword1">
             </div>
             
