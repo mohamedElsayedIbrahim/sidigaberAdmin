@@ -6,6 +6,9 @@ return[
 'service'=>'الذهاب للخدمة',
 'bankTitle' => "مصروفات الطلاب",
 'busTitle' => 'اشتراكات اتوبيس الطلاب',
-
+'statistics'=> 'احصاءات',
+'TotalStudent' => 'اجمالى الطلاب',
+'PaiedSchool'=>'المصروفات المدفوعة',
+'PaiedBus' => 'اشتراك الاتوبيس',
 
 ];

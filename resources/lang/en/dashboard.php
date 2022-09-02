@@ -6,4 +6,8 @@ return[
 'service'=>'Service link',
 'bankTitle' => "Student Payment",
 'busTitle' => 'Student Bus',
+'statistics'=> 'Statistics',
+'TotalStudent' => 'Total Student',
+'PaiedSchool'=>'Paied School',
+'PaiedBus' => 'Paied Bus',
 ];
