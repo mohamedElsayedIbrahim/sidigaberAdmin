@@ -40,7 +40,7 @@
                             <td scope="row">{{$loop->iteration}}</td>
                             <td>{{$student->ssn}}</td>
                             <td>{{$student->studentName}}</td>
-                            <td><img src="{{$student->image}}" alt="{{$student->studentName}}" width="100"></td>
+                            <td><img src="{{$student->image_name}}" alt="{{$student->image_name}}" width="100"></td>
                             <td>
                                
                             </td>

@@ -11,20 +11,20 @@ class siteController extends Controller
     {
         $studentNumber = DB::table('educationalfee')
         ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image')
-        ->where('educationalfee.ServiceType' ,'=' ,'مصروفات دراسية')
+        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
+        ->where('educationalfee.stype' ,'=' ,'مصروفات دراسية')
         ->count();
 
         $paied = DB::table('educationalfee')
         ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image')
-        ->where('educationalfee.ServiceType' ,'=' ,'مصروفات دراسية')
-        ->whereNotNull('educationalfee.image')->count();
+        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
+        ->where('educationalfee.stype' ,'=' ,'مصروفات دراسية')
+        ->whereNotNull('educationalfee.image_name')->count();
 
         $busPaied = DB::table('educationalfee')
         ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image')
-        ->where('educationalfee.ServiceType' ,'=' ,'اشتراك اتوبيس طلاب')
+        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
+        ->where('educationalfee.stype' ,'=' ,'اشتراك اتوبيس طلاب')
         ->count();
         
         return view('board', compact('studentNumber','paied','busPaied'));
