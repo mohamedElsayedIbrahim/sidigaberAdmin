@@ -15,7 +15,7 @@ class AuthController extends Controller
     public function handel_login(Request $request)
     {
         $request->validate([
-            'name'=>'required|string|max:100|min:3|exists:Users,name',
+            'name'=>'required|string|max:100|min:3|exists:users,name',
             'password'=>'required|string|max:30|min:5'
         ]);
         Auth::attempt(['name'=>$request->name,'password'=>$request->password]);
