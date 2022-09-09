@@ -13,8 +13,8 @@
 <div class="navigation">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route("app.board")}}">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Student information</li>
+          <li class="breadcrumb-item"><a href="{{route("app.board")}}">@lang('site.home')</a></li>
+          <li class="breadcrumb-item active" aria-current="page">@lang('dashboard.studentInfo')</li>
         </ol>
     </nav>
 </div>
@@ -23,7 +23,7 @@
 
 @if (count($students) == 0)
             <div class="bg-primary text-center p-5 text-white text-capitalize alert">
-                soory, there are No data for view!
+                @lang('site.nodata')
             </div>
             
             @else
@@ -31,9 +31,9 @@
                 <thead class="thead-inverse">
                     <tr>
                         <th>#</th>
-                        <th>National Number</th>
-                        <th>Student name</th>
-                        <th>Action</th>
+                        <th>@lang('studentInfo.national')</th>
+                        <th>@lang('studentInfo.student')</th>
+                        <th>@lang('studentInfo.action')</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -53,7 +53,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="2">Total Specializes: <strong>{{count($students)}}</strong></td>
+                            <td colspan="2">@lang('studentInfo.total'): <strong>{{count($students)}}</strong></td>
                             <td>{{$students->render()}}</td>
                         </tr>
                     </tfoot>

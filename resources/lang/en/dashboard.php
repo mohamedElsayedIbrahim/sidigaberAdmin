@@ -11,4 +11,5 @@ return[
 'PaiedSchool'=>'Paied School',
 'PaiedBus' => 'Paied Bus',
 'studentInfo' => 'Student Information',
+
 ];
