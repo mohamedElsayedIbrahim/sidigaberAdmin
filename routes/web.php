@@ -38,8 +38,14 @@ Route::middleware('is.login')->group(function(){
     */
     Route::get('/app', 'siteController@board')->name('app.board');
 
-    Route::get('/student','StudentController@index')->name('app.student');
+    
+    Route::get('/student','StudentController@info')->name('app.student.info');
+
+    Route::get('/student/bank','StudentController@index')->name('app.student');
     Route::get('/student/bus','StudentController@bus')->name('app.student.bus');
+
+    Route::get('/student/edit/{id}','StudentController@edit')->name('app.student.edit');
+    Route::post('/student/update/{id}','StudentController@update')->name('app.student.update');
 });
 
 

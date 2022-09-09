@@ -10,5 +10,6 @@ return[
 'TotalStudent' => 'اجمالى الطلاب',
 'PaiedSchool'=>'المصروفات المدفوعة',
 'PaiedBus' => 'اشتراك الاتوبيس',
+'studentInfo' => 'معلومات الطلاب',
 
 ];

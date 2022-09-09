@@ -10,4 +10,5 @@ return[
 'TotalStudent' => 'Total Student',
 'PaiedSchool'=>'Paied School',
 'PaiedBus' => 'Paied Bus',
+'studentInfo' => 'Student Information',
 ];
