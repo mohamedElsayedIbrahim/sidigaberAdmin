@@ -11,9 +11,9 @@ class StudentController extends Controller
     {
         $students = DB::table('educationalfee')
         ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
+        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name','educationalfee.updated_at')
         ->where('educationalfee.stype' ,'=' ,'مصروفات دراسية')
-        ->whereNotNull('educationalfee.image_name')->paginate(15);
+        ->whereNotNull('educationalfee.image_name')->orderBy('educationalfee.updated_at','DESC')->paginate(15);
 
         return view('students.index',compact('students'));
     }
@@ -22,9 +22,9 @@ class StudentController extends Controller
     {
         $students = DB::table('educationalfee')
         ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
+        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name','educationalfee.updated_at')
         ->where('educationalfee.stype' ,'=' ,'اشتراك اتوبيس طلاب')
-        ->whereNotNull('educationalfee.image_name')->paginate(15);
+        ->whereNotNull('educationalfee.image_name')->orderBy('educationalfee.updated_at','DESC')->paginate(15);
         
         return view('students.bus',compact('students'));
     }

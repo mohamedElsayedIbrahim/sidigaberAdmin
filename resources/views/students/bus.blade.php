@@ -31,6 +31,7 @@
                         <th>#</th>
                         <th>National Number</th>
                         <th>Student name</th>
+                        <th>Upload date & time</th>
                         <th>Bus Recipt Image</th>
                     </tr>
                     </thead>
@@ -40,6 +41,7 @@
                             <td scope="row">{{$loop->iteration}}</td>
                             <td>{{$student->ssn}}</td>
                             <td>{{$student->studentName}}</td>
+                            <td>{{$student->updated_at}}</td>
                             <td><a href="https://app.sidigaber.org/upload/bus/{{$student->image_name}}" target="_blank">View image</a></td>
                             <td>
                                
