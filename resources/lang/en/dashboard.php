@@ -11,5 +11,7 @@ return[
 'PaiedSchool'=>'Paied School',
 'PaiedBus' => 'Paied Bus',
 'studentInfo' => 'Student Information',
-
+'users'=>'users system',
+'roles'=>'Roles system',
+'permissions'=>'Permissions system',
 ];

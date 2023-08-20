@@ -11,7 +11,14 @@
 
 @section('content')
     
-    <h1 class="mb-3">Laravel 8 User Roles and Permissions Step by Step Tutorial - codeanddeploy.com</h1>
+<div class="navigation">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{route("app.board")}}">@lang('site.home')</a></li>
+          <li class="breadcrumb-item active" aria-current="page">@lang('dashboard.users')</li>
+        </ol>
+    </nav>
+</div>
 
     <div class="bg-light p-4 rounded">
         <h1>Users</h1>
@@ -21,7 +28,7 @@
         </div>
         
         <div class="mt-2">
-            @include('layouts.partials.messages')
+            <x-alert></x-alert>
         </div>
 
         <table class="table table-striped">

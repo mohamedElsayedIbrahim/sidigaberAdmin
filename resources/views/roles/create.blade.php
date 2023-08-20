@@ -10,6 +10,20 @@
 @endsection
 
 @section('content')
+
+<div class="navigation">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{route("app.board")}}">@lang('site.home')</a></li>
+          <li class="breadcrumb-item"><a href="{{route("roles.index")}}">@lang('dashboard.roles')</a></li>
+          <li class="breadcrumb-item active" aria-current="page">@lang('dashboard.studentInfo')</li>
+        </ol>
+    </nav>
+</div>
+
+<x-alert></x-alert>
+
+
     <div class="bg-light p-4 rounded">
         <h1>Add new role</h1>
         <div class="lead">

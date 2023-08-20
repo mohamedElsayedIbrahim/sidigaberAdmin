@@ -11,6 +11,15 @@
 
 @section('content')
     
+<div class="navigation">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{route("app.board")}}">@lang('site.home')</a></li>
+          <li class="breadcrumb-item active" aria-current="page">@lang('dashboard.roles')</li>
+        </ol>
+    </nav>
+</div>
+
 <div class="bg-light p-4 rounded">
     <h1>Roles</h1>
     <div class="lead">
@@ -19,7 +28,7 @@
     </div>
     
     <div class="mt-2">
-        @include('layouts.partials.messages')
+        <x-alert></x-alert>
     </div>
 
     <table class="table table-bordered">

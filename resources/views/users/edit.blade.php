@@ -10,6 +10,20 @@
 @endsection
 
 @section('content')
+
+<div class="navigation">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{route("app.board")}}">@lang('site.home')</a></li>
+          <li class="breadcrumb-item"><a href="{{route("users.index")}}">@lang('dashboard.users')</a></li>
+          <li class="breadcrumb-item active" aria-current="page">@lang('dashboard.studentInfo')</li>
+        </ol>
+    </nav>
+</div>
+
+<x-alert></x-alert>
+
+
     <div class="bg-light p-4 rounded">
         <h1>Update user</h1>
         <div class="lead">
@@ -43,17 +57,7 @@
                         <span class="text-danger text-left">{{ $errors->first('email') }}</span>
                     @endif
                 </div>
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input value="{{ $user->username }}"
-                        type="text" 
-                        class="form-control" 
-                        name="username" 
-                        placeholder="Username" required>
-                    @if ($errors->has('username'))
-                        <span class="text-danger text-left">{{ $errors->first('username') }}</span>
-                    @endif
-                </div>
+                
                 <div class="mb-3">
                     <label for="role" class="form-label">Role</label>
                     <select class="form-control" 

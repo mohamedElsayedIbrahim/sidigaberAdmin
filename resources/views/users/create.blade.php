@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('title')
-    App | Permission
+    App | Users
 @endsection
 
 @section('header')
@@ -15,6 +15,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route("app.board")}}">@lang('site.home')</a></li>
+          <li class="breadcrumb-item"><a href="{{route("users.index")}}">@lang('dashboard.users')</a></li>
           <li class="breadcrumb-item active" aria-current="page">@lang('dashboard.studentInfo')</li>
         </ol>
     </nav>
@@ -23,14 +24,13 @@
 <x-alert></x-alert>
 
     <div class="bg-light p-4 rounded">
-        <h2>Add new permission</h2>
+        <h1>Add new user</h1>
         <div class="lead">
-            Add new permission.
+            Add new user and assign role.
         </div>
 
         <div class="container mt-4">
-
-            <form method="POST" action="{{ route('permissions.store') }}">
+            <form method="POST" action="">
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
@@ -44,9 +44,21 @@
                         <span class="text-danger text-left">{{ $errors->first('name') }}</span>
                     @endif
                 </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input value="{{ old('email') }}"
+                        type="email" 
+                        class="form-control" 
+                        name="email" 
+                        placeholder="Email address" required>
+                    @if ($errors->has('email'))
+                        <span class="text-danger text-left">{{ $errors->first('email') }}</span>
+                    @endif
+                </div>
+                
 
-                <button type="submit" class="btn btn-primary">Save permission</button>
-                <a href="{{ route('permissions.index') }}" class="btn btn-default">Back</a>
+                <button type="submit" class="btn btn-primary">Save user</button>
+                <a href="{{ route('users.index') }}" class="btn btn-default">Back</a>
             </form>
         </div>
 
