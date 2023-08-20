@@ -56,20 +56,37 @@ Route::middleware('site.lang')->group(function(){
         Route::resource('permissions', PermissionsController::class);
 
         /**
-         * User Routes
+         * stage Routes
          */
         Route::group(['prefix' => 'users'], function() {
             Route::get('/', 'UsersController@index')->name('users.index');
             Route::get('/create', 'UsersController@create')->name('users.create');
             Route::post('/create', 'UsersController@store')->name('users.store');
-            Route::get('/{user}/show', 'UsersController@show')->name('users.show');
-            Route::get('/{user}/edit', 'UsersController@edit')->name('users.edit');
-            Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
-            Route::delete('/{user}/delete', 'UsersController@destroy')->name('users.destroy');
+            Route::get('/{stage}/show', 'UsersController@show')->name('users.show');
+            Route::get('/{stage}/edit', 'UsersController@edit')->name('users.edit');
+            Route::patch('/{stage}/update', 'UsersController@update')->name('users.update');
+            Route::delete('/{stage}/delete', 'UsersController@destroy')->name('users.destroy');
         });
 
         /**
-         * User Routes
+         * stage Routes
+         */
+
+         /**
+         * stage Routes
+         */
+        Route::group(['prefix' => 'stage'], function() {
+            Route::get('/', 'StageController@index')->name('stage.index');
+            Route::get('/create', 'StageController@create')->name('stage.create');
+            Route::post('/create', 'StageController@store')->name('stage.store');
+            Route::get('/{stage}/show', 'StageController@show')->name('stage.show');
+            Route::get('/{stage}/edit', 'StageController@edit')->name('stage.edit');
+            Route::patch('/{stage}/update', 'StageController@update')->name('stage.update');
+            Route::delete('/{stage}/delete', 'StageController@destroy')->name('stage.destroy');
+        });
+
+        /**
+         * stage Routes
          */
 
     });
