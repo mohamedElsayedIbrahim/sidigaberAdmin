@@ -19,7 +19,7 @@
     </nav>
 </div>
 
-@include('layouts.message')
+<x-alert></x-alert>
 
 @if (count($students) == 0)
             <div class="bg-primary text-center p-5 text-white text-capitalize alert">

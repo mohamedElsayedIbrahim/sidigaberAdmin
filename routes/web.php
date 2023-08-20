@@ -29,7 +29,7 @@ Route::middleware('site.lang')->group(function(){
         /**
          * Login Routes
          */
-        Route::get('/', 'AuthController@login')->name('home');
+        Route::get('/', 'AuthController@login')->name('login');
         Route::post('/handel/login','AuthController@handel_login')->name('login.handel');
 
     });
@@ -51,6 +51,26 @@ Route::middleware('site.lang')->group(function(){
 
         Route::get('/student/edit/{id}','StudentController@edit')->name('app.student.edit');
         Route::post('/student/update/{id}','StudentController@update')->name('app.student.update');
+
+        Route::resource('roles', RolesController::class);
+        Route::resource('permissions', PermissionsController::class);
+
+        /**
+         * User Routes
+         */
+        Route::group(['prefix' => 'users'], function() {
+            Route::get('/', 'UsersController@index')->name('users.index');
+            Route::get('/create', 'UsersController@create')->name('users.create');
+            Route::post('/create', 'UsersController@store')->name('users.store');
+            Route::get('/{user}/show', 'UsersController@show')->name('users.show');
+            Route::get('/{user}/edit', 'UsersController@edit')->name('users.edit');
+            Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
+            Route::delete('/{user}/delete', 'UsersController@destroy')->name('users.destroy');
+        });
+
+        /**
+         * User Routes
+         */
 
     });
 });

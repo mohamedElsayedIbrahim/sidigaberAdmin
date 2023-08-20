@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-6">
         <h1 class="pb-3">@lang('site.welcome')</h1>
-        @include('layouts.error')
+        <x-alert></x-alert>
         <form method="POST" action="{{ route('login.handel') }}" novalidate class="row g-3 needs-validation">
 
             @csrf
