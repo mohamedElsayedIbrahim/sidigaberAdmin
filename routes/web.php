@@ -56,20 +56,20 @@ Route::middleware('site.lang')->group(function(){
         Route::resource('permissions', PermissionsController::class);
 
         /**
-         * stage Routes
+         * user Routes
          */
         Route::group(['prefix' => 'users'], function() {
             Route::get('/', 'UsersController@index')->name('users.index');
             Route::get('/create', 'UsersController@create')->name('users.create');
             Route::post('/create', 'UsersController@store')->name('users.store');
-            Route::get('/{stage}/show', 'UsersController@show')->name('users.show');
-            Route::get('/{stage}/edit', 'UsersController@edit')->name('users.edit');
-            Route::patch('/{stage}/update', 'UsersController@update')->name('users.update');
-            Route::delete('/{stage}/delete', 'UsersController@destroy')->name('users.destroy');
+            Route::get('/{user}/show', 'UsersController@show')->name('users.show');
+            Route::get('/{user}/edit', 'UsersController@edit')->name('users.edit');
+            Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
+            Route::delete('/{user}/delete', 'UsersController@destroy')->name('users.destroy');
         });
 
         /**
-         * stage Routes
+         * user Routes
          */
 
          /**
@@ -87,6 +87,23 @@ Route::middleware('site.lang')->group(function(){
 
         /**
          * stage Routes
+         */
+
+          /**
+         * branch Routes
+         */
+        Route::group(['prefix' => 'branch'], function() {
+            Route::get('/', 'BranchController@index')->name('branch.index');
+            Route::get('/create', 'BranchController@create')->name('branch.create');
+            Route::post('/create', 'BranchController@store')->name('branch.store');
+            Route::get('/{branch}/show', 'BranchController@show')->name('branch.show');
+            Route::get('/{branch}/edit', 'BranchController@edit')->name('branch.edit');
+            Route::patch('/{branch}/update', 'BranchController@update')->name('branch.update');
+            Route::delete('/{branch}/delete', 'BranchController@destroy')->name('branch.destroy');
+        });
+
+        /**
+         * branch Routes
          */
 
     });
