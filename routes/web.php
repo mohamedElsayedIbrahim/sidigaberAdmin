@@ -89,7 +89,7 @@ Route::middleware('site.lang')->group(function(){
          * stage Routes
          */
 
-          /**
+        /**
          * branch Routes
          */
         Route::group(['prefix' => 'branches'], function() {
@@ -104,7 +104,24 @@ Route::middleware('site.lang')->group(function(){
 
         /**
          * branch Routes
+        */
+
+        /**
+         * academicyear Routes
          */
+        Route::group(['prefix' => 'academicyear'], function() {
+            Route::get('/', 'AcademicyearController@index')->name('academicyears.index');
+            Route::get('/create', 'AcademicyearController@create')->name('academicyears.create');
+            Route::post('/create', 'AcademicyearController@store')->name('academicyears.store');
+            Route::get('/{academicyear}/show', 'AcademicyearController@show')->name('academicyears.show');
+            Route::get('/{academicyear}/edit', 'AcademicyearController@edit')->name('academicyears.edit');
+            Route::patch('/{academicyear}/update', 'AcademicyearController@update')->name('academicyears.update');
+            Route::delete('/{academicyear}/delete', 'AcademicyearController@destroy')->name('academicyears.destroy');
+        });
+
+        /**
+         * academicyear Routes
+        */
 
     });
 });

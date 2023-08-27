@@ -16,4 +16,5 @@ return[
 'permissions'=>'Permissions system',
 'branches'=>'Schools',
 'stages'=>'School stage',
+'academicyears'=>'academic year',
 ];
