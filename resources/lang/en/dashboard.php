@@ -14,4 +14,6 @@ return[
 'users'=>'users system',
 'roles'=>'Roles system',
 'permissions'=>'Permissions system',
+'branches'=>'Schools',
+'stages'=>'School stage',
 ];

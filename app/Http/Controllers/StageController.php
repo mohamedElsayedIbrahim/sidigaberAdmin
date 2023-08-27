@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Branch;
+use App\Http\Requests\StoreStageRequest;
+use App\Http\Requests\UpdateStageRequest;
 use App\Stage;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,8 @@ class StageController extends Controller
      */
     public function index()
     {
-        //
+        $stages = Stage::latest()->paginate(10);
+        return view('stages.index',['stages'=>$stages]);
     }
 
     /**
@@ -24,7 +28,7 @@ class StageController extends Controller
      */
     public function create()
     {
-        //
+        return view('stages.create',['schools'=>Branch::latest()->get()]);
     }
 
     /**
@@ -33,9 +37,14 @@ class StageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Stage $stage, StoreStageRequest $request)
     {
-        //
+        $record = $stage->create($request->validated());
+
+        $record->branches()->sync($request->get('school'));
+
+        return redirect()->route('stages.index')
+            ->withSuccess(__('stage Created successfully.'));
     }
 
     /**
@@ -46,7 +55,7 @@ class StageController extends Controller
      */
     public function show(Stage $stage)
     {
-        //
+        return view('stages.show',['stage'=>$stage]);
     }
 
     /**
@@ -57,7 +66,8 @@ class StageController extends Controller
      */
     public function edit(Stage $stage)
     {
-        //
+        $branches = Branch::get();
+        return view('stages.edit',['stage'=>$stage,'stageBranches'=>$stage->branches->pluck('id')->toArray(),'schools'=>$branches]);
     }
 
     /**
@@ -67,9 +77,12 @@ class StageController extends Controller
      * @param  \App\Stage  $stage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Stage $stage)
+    public function update(UpdateStageRequest $request, Stage $stage)
     {
-        //
+        $stage->update($request->validated());
+        $stage->branches()->sync($request->get('school'));
+        return redirect()->route('stages.index')
+            ->withSuccess(__('stage Updated successfully.'));
     }
 
     /**
@@ -80,6 +93,8 @@ class StageController extends Controller
      */
     public function destroy(Stage $stage)
     {
-        //
+        $stage->delete();
+        return redirect()->route('stages.index')
+            ->withSuccess(__('stage Deleted successfully.'));
     }
 }

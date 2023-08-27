@@ -9,24 +9,24 @@ class siteController extends Controller
 {
     public function board()
     {
-        $studentNumber = DB::table('educationalfee')
-        ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
-        ->where('educationalfee.stype' ,'=' ,'مصروفات دراسية')
-        ->count();
+        // $studentNumber = DB::table('educationalfee')
+        // ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
+        // ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
+        // ->where('educationalfee.stype' ,'=' ,'مصروفات دراسية')
+        // ->count();
 
-        $paied = DB::table('educationalfee')
-        ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
-        ->where('educationalfee.stype' ,'=' ,'مصروفات دراسية')
-        ->whereNotNull('educationalfee.image_name')->count();
+        // $paied = DB::table('educationalfee')
+        // ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
+        // ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
+        // ->where('educationalfee.stype' ,'=' ,'مصروفات دراسية')
+        // ->whereNotNull('educationalfee.image_name')->count();
 
-        $busPaied = DB::table('educationalfee')
-        ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
-        ->where('educationalfee.stype' ,'=' ,'اشتراك اتوبيس طلاب')
-        ->count();
+        // $busPaied = DB::table('educationalfee')
+        // ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
+        // ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
+        // ->where('educationalfee.stype' ,'=' ,'اشتراك اتوبيس طلاب')
+        // ->count();
         
-        return view('board', compact('studentNumber','paied','busPaied'));
+        return view('board');
     }
 }

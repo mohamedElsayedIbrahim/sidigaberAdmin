@@ -75,14 +75,14 @@ Route::middleware('site.lang')->group(function(){
          /**
          * stage Routes
          */
-        Route::group(['prefix' => 'stage'], function() {
-            Route::get('/', 'StageController@index')->name('stage.index');
-            Route::get('/create', 'StageController@create')->name('stage.create');
-            Route::post('/create', 'StageController@store')->name('stage.store');
-            Route::get('/{stage}/show', 'StageController@show')->name('stage.show');
-            Route::get('/{stage}/edit', 'StageController@edit')->name('stage.edit');
-            Route::patch('/{stage}/update', 'StageController@update')->name('stage.update');
-            Route::delete('/{stage}/delete', 'StageController@destroy')->name('stage.destroy');
+        Route::group(['prefix' => 'stages'], function() {
+            Route::get('/', 'StageController@index')->name('stages.index');
+            Route::get('/create', 'StageController@create')->name('stages.create');
+            Route::post('/create', 'StageController@store')->name('stages.store');
+            Route::get('/{stage}/show', 'StageController@show')->name('stages.show');
+            Route::get('/{stage}/edit', 'StageController@edit')->name('stages.edit');
+            Route::patch('/{stage}/update', 'StageController@update')->name('stages.update');
+            Route::delete('/{stage}/delete', 'StageController@destroy')->name('stages.destroy');
         });
 
         /**
@@ -92,14 +92,14 @@ Route::middleware('site.lang')->group(function(){
           /**
          * branch Routes
          */
-        Route::group(['prefix' => 'branch'], function() {
-            Route::get('/', 'BranchController@index')->name('branch.index');
-            Route::get('/create', 'BranchController@create')->name('branch.create');
-            Route::post('/create', 'BranchController@store')->name('branch.store');
-            Route::get('/{branch}/show', 'BranchController@show')->name('branch.show');
-            Route::get('/{branch}/edit', 'BranchController@edit')->name('branch.edit');
-            Route::patch('/{branch}/update', 'BranchController@update')->name('branch.update');
-            Route::delete('/{branch}/delete', 'BranchController@destroy')->name('branch.destroy');
+        Route::group(['prefix' => 'branches'], function() {
+            Route::get('/', 'BranchController@index')->name('branches.index');
+            Route::get('/create', 'BranchController@create')->name('branches.create');
+            Route::post('/create', 'BranchController@store')->name('branches.store');
+            Route::get('/{branch}/show', 'BranchController@show')->name('branches.show');
+            Route::get('/{branch}/edit', 'BranchController@edit')->name('branches.edit');
+            Route::patch('/{branch}/update', 'BranchController@update')->name('branches.update');
+            Route::delete('/{branch}/delete', 'BranchController@destroy')->name('branches.destroy');
         });
 
         /**
