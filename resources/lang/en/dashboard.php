@@ -17,4 +17,5 @@ return[
 'branches'=>'Schools',
 'stages'=>'School stage',
 'academicyears'=>'academic year',
+'studentFile'=>'student files'
 ];

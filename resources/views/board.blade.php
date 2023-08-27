@@ -19,34 +19,12 @@
         <div class="col-md-6">
           <div class="card my-2">
               <div class="card-body">
-                <h5 class="card-title"><a href="{{ route('app.student') }}" class="card-link">@lang('dashboard.bankTitle')</a></h5>
+                <h5 class="card-title"><a href="{{ route('students.index') }}" class="card-link">@lang('dashboard.studentFile')</a></h5>
                 <h6 class="card-subtitle mb-2 text-muted">This feature for know how upload the bank transaction</h6>
                 <p class="card-text">You can access students  data how upload transaction files.</p>
-                <a href="{{ route('app.student') }}" class="card-link">@lang('dashboard.service')</a>
+                <a href="{{ route('students.index') }}" class="card-link">@lang('dashboard.service')</a>
               </div>
             </div>
-      </div>
-  
-      <div class="col-md-6">
-          <div class="card my-2">
-              <div class="card-body">
-                <h5 class="card-title"><a href="{{ route('app.student.bus') }}" class="card-link">@lang('dashboard.busTitle')</a></h5>
-                <h6 class="card-subtitle mb-2 text-muted">This feature for know how upload the bus transaction</h6>
-                <p class="card-text">You can access students  data how upload transaction files.</p>
-                <a href="{{ route('app.student.bus') }}" class="card-link">@lang('dashboard.service')</a>
-              </div>
-            </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="card my-2">
-            <div class="card-body">
-              <h5 class="card-title"><a href="{{ route('app.student.info') }}" class="card-link">@lang('dashboard.studentInfo')</a></h5>
-              <h6 class="card-subtitle mb-2 text-muted">This feature for know how upload the bus transaction</h6>
-              <p class="card-text">You can access students  data how upload transaction files.</p>
-              <a href="{{ route('app.student.info') }}" class="card-link">@lang('dashboard.service')</a>
-            </div>
-          </div>
       </div>
 
       <div class="col-md-6">

@@ -17,4 +17,5 @@ return[
 'branches'=>'الجهات التابعة',
 'stages'=>'المراحل التعليمية',
 'academicyears'=>'السنة الدراسية',
+'studentFile'=>'ملفات الطلاب'
 ];

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAcadmicYearRequest extends FormRequest
+class UpdateSturentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,12 @@ class UpdateAcadmicYearRequest extends FormRequest
      */
     public function rules()
     {
-        $year = request()->route('academicyear');
-        
+        $student = request()->route('student');
+
         return [
-            'year'=>'required|string|min:9,max:9,unique:academicyears,year,'.$year->id
+            'id'=>'string|required|min:14,max:14,unique:students,id,'.$student->id,
+            'fullname'=>'string|required',
+            'gender'=>'string|required|in:male,female',
         ];
     }
 }

@@ -1,7 +1,8 @@
+
 @extends('layouts.app')
 
 @section('title')
-    App | Student
+    App | students files
 @endsection
 
 @section('header')
@@ -9,59 +10,57 @@
 @endsection
 
 @section('content')
-
+    
 <div class="navigation">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route("app.board")}}">@lang('site.home')</a></li>
-          <li class="breadcrumb-item active" aria-current="page">@lang('dashboard.bankTitle')</li>
+          <li class="breadcrumb-item active" aria-current="page">@lang('dashboard.studentFile')</li>
         </ol>
     </nav>
 </div>
 
-@if (count($students) == 0)
-            <div class="bg-primary text-center p-5 text-white text-capitalize alert">
-                @lang('site.nodata')
-            </div>
-            
-            @else
-            <table class="table table-striped table-responsive">
-                <thead class="thead-inverse">
+    <div class="bg-light p-4 rounded">
+        <h1>students</h1>
+        <div class="lead">
+            Manage your students here.
+            <a href="{{ route('students.create') }}" class="btn btn-primary btn-sm float-right">Add new student</a>
+        </div>
+        
+        <div class="mt-2">
+            <x-alert></x-alert>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col" width="1%">#</th>
+                <th scope="col" width="15%">Name</th>
+                <th scope="col" width="15%">National ID</th>
+                <th scope="col" width="1%" colspan="3"></th>    
+            </tr>
+            </thead>
+            <tbody>
+                @foreach($students as $student)
                     <tr>
-                        <th>#</th>
-                        <th>National Number</th>
-                        <th>Student name</th>
-                        <th>Upload date & time</th>
-                        <th>Recipt Image</th>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $student->fullname }}</td>
+                        <td>{{ $student->id }}</td>
+                        <td><a href="{{ route('students.show', $student->id) }}" class="btn btn-warning btn-sm">Show</a></td>
+                        <td><a href="{{ route('students.edit', $student->id) }}" class="btn btn-info btn-sm">Edit</a></td>
+                        <td>
+                            {!! Form::open(['method' => 'DELETE','route' => ['students.destroy', $student->id],'style'=>'display:inline']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                            {!! Form::close() !!}
+                        </td>
                     </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($students as $student)
-                        <tr>
-                            <td scope="row">{{$loop->iteration}}</td>
-                            <td>{{$student->ssn}}</td>
-                            <td>{{$student->studentName}}</td>
-                            <td>{{$student->updated_at}}</td>
-                            <td><a href="https://app.sidigaber.org/upload/bank/{{$student->image_name}}" target="_blank">View image</a></td>
-                            <td>
-                               
-                            </td>
-                        </tr>
-                        @endforeach
-                        
-                        
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="2">Total Specializes: <strong>{{count($students)}}</strong></td>
-                            <td>{{$students->render()}}</td>
-                        </tr>
-                    </tfoot>
-            </table>
-            
-        @endif
+                @endforeach
+            </tbody>
+        </table>
 
+        <div class="d-flex">
+            {!! $students->links() !!}
+        </div>
 
-
-
+    </div>
 @endsection

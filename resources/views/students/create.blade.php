@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('title')
-    App | students
+    App | students files
 @endsection
 
 @section('header')
@@ -23,21 +23,19 @@
 
 <x-alert></x-alert>
 
-
     <div class="bg-light p-4 rounded">
-        <h1>Update student</h1>
+        <h1>Add new branch</h1>
         <div class="lead">
-            
+            Add new branch and assign role.
         </div>
-        
+
         <div class="container mt-4">
-            <form method="post" action="{{ route('students.update', $student->id) }}">
-                @method('patch')
+            <form method="POST" action="">
                 @csrf
                 
                 <div class="mb-3">
                     <label for="fullname" class="form-label">full Name</label>
-                    <input value="{{ old('fullname') ?? $student->fullname }}"
+                    <input value="{{ old('fullname') }}" 
                         type="text" 
                         class="form-control" 
                         name="fullname" 
@@ -50,7 +48,7 @@
 
                 <div class="mb-3">
                     <label for="id" class="form-label">National ID</label>
-                    <input value="{{ old('id') ?? $student->id }}" 
+                    <input value="{{ old('id') }}" 
                         type="text" 
                         class="form-control" 
                         name="id" 
@@ -65,17 +63,18 @@
                     <label for="gender" class="form-label">gender</label>
                     <select class="form-control" name="gender"  required>
                         <option>select student gender</option>
-                        <option value="male" {{ old('gender') ?? $student->gender == 'male' ? 'selected':'' }}>Male</option>
-                        <option value="female" {{ old('gender') ?? $student->gender == 'female' ? 'selected':'' }}>Female</option>
+                        <option value="male" {{ old('gender') == 'male' ? 'selected':'' }}>Male</option>
+                        <option value="female" {{ old('gender') == 'female' ? 'selected':'' }}>Female</option>
                     </select>
 
                     @if ($errors->has('gender'))
                         <span class="text-danger text-left">{{ $errors->first('gender') }}</span>
                     @endif
                 </div>
-              
-                <button type="submit" class="btn btn-primary">Update student</button>
-                <a href="{{ route('students.index') }}" class="btn btn-default">Cancel</button>
+                
+
+                <button type="submit" class="btn btn-primary">Save Branch</button>
+                <a href="{{ route('students.index') }}" class="btn btn-default">Back</a>
             </form>
         </div>
 

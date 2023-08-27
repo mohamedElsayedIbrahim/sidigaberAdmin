@@ -43,15 +43,6 @@ Route::middleware('site.lang')->group(function(){
         
         Route::get('/app', 'siteController@board')->name('app.board');
 
-        
-        Route::get('/student','StudentController@info')->name('app.student.info');
-
-        Route::get('/student/bank','StudentController@index')->name('app.student');
-        Route::get('/student/bus','StudentController@bus')->name('app.student.bus');
-
-        Route::get('/student/edit/{id}','StudentController@edit')->name('app.student.edit');
-        Route::post('/student/update/{id}','StudentController@update')->name('app.student.update');
-
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);
 
@@ -121,6 +112,23 @@ Route::middleware('site.lang')->group(function(){
 
         /**
          * academicyear Routes
+        */
+
+        /**
+         * student Routes
+         */
+        Route::group(['prefix' => 'student'], function() {
+            Route::get('/', 'StudentController@index')->name('students.index');
+            Route::get('/create', 'StudentController@create')->name('students.create');
+            Route::post('/create', 'StudentController@store')->name('students.store');
+            Route::get('/{student}/show', 'StudentController@show')->name('students.show');
+            Route::get('/{student}/edit', 'StudentController@edit')->name('students.edit');
+            Route::patch('/{student}/update', 'StudentController@update')->name('students.update');
+            Route::delete('/{student}/delete', 'StudentController@destroy')->name('students.destroy');
+        });
+
+        /**
+         * student Routes
         */
 
     });

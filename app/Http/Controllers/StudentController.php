@@ -2,67 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSturentRequest;
+use App\Http\Requests\UpdateSturentRequest;
+use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
-    public function index()
-    {
-        $students = DB::table('educationalfee')
-        ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name','educationalfee.updated_at')
-        ->where('educationalfee.stype' ,'=' ,'مصروفات دراسية')
-        ->whereNotNull('educationalfee.image_name')->orderBy('educationalfee.updated_at','DESC')->paginate(15);
-
-        return view('students.index',compact('students'));
+    public function index(){
+        $students = Student::latest()->paginate(10);
+        return view('students.index',['students'=>$students]);
     }
 
-    public function bus()
+    public function create()
     {
-        $students = DB::table('educationalfee')
-        ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name','educationalfee.updated_at')
-        ->where('educationalfee.stype' ,'=' ,'اشتراك اتوبيس طلاب')
-        ->whereNotNull('educationalfee.image_name')->orderBy('educationalfee.updated_at','DESC')->paginate(15);
-        
-        return view('students.bus',compact('students'));
+        return view('students.create');
     }
 
-    public function info(){
-        $students = DB::table('eductionalstudent')->select('ssn','studentName')->paginate(15);
-        return view('students.info',compact('students'));
+    public function store(Student $student, StoreSturentRequest $request)
+    {
+
+        $student->create($request->validated());
+
+        return redirect()->route('students.index')
+                        ->with('success','student created successfully');
     }
 
-    public function edit($id)
+    public function show(Student $student)
     {
-        $student = DB::table('eductionalstudent')->select('ssn','studentName')->where('ssn','=',$id)->first();
-        if($student === null){
-            return abort(404);
-        }
-        return view('students.edit',compact('student'));
+        return view('students.show',['student'=>$student]);
     }
 
-    public function update(Request $request, $id)
+    public function edit(Student $student)
     {
-        $request->validate([
-            'ssn'=>'required|min:14|max:14|string',
-            'studentName'=>'required|min:4|max:100|string'
-        ]);
+        return view('students.edit',['student'=>$student]);
+    }
 
-        DB::table('educationalfee')->where('ssn','=',$id)->delete();
-        DB::table('eductionalstudent')->where('ssn','=',$id)->update([
-            'ssn'=>$request->ssn,
-            'studentName'=> $request->studentName
-        ]);
+    public function update(Student $student, UpdateSturentRequest $request)
+    {
 
-        DB::table('educationalfee')->insert([
-            'ssn'=>$request->ssn,
-            'feesYear' => '2022',
-            'fees' => 12430.00,
-            'stype'=>'مصروفات دراسية'
-        ]);
+        $student->update($request->validated());
 
-        return redirect()->route('app.student.info')->with('message', 'updated successfully');
+        return redirect()->route('students.index')
+                        ->with('success','student updated successfully');
+    }
+
+    public function destroy(Student $student)
+    {
+        $student->delete();
+
+        return redirect()->route('students.index')
+                        ->with('success','student deleted successfully');
     }
 }
