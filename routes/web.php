@@ -131,6 +131,10 @@ Route::middleware('site.lang')->group(function(){
          * student Routes
         */
 
+        Route::middleware('json')->group(function(){
+            Route::get('get/{branch}/stage',[StageController::class,'get_branch_stage']);
+        });
+
     });
 });
 

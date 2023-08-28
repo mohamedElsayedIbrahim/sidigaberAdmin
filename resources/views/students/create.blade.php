@@ -71,7 +71,51 @@
                         <span class="text-danger text-left">{{ $errors->first('gender') }}</span>
                     @endif
                 </div>
+
+                <hr />
+
+                <h2>student Enrollments</h2>
                 
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="school" class="form-label">school</label>
+                        <select class="form-control" name="school" id="school"  required>
+                            <option>select student school</option>
+                            @foreach ($branches as $branche)
+                            <option value="{{$branche->id}}" {{ old('school') == $branche->id ? 'selected':'' }}>{{$branche->title}}</option>
+                            @endforeach
+                        </select>
+    
+                        @if ($errors->has('school'))
+                            <span class="text-danger text-left">{{ $errors->first('school') }}</span>
+                        @endif
+                    </div>
+    
+                    <div class="col-md-4">
+                        <label for="stage" class="form-label">stage</label>
+                        <select disabled class="form-control" name="stage" id="stage"  required>
+                            <option>select student stage</option>
+                            
+                        </select>
+    
+                        @if ($errors->has('stage'))
+                            <span class="text-danger text-left">{{ $errors->first('stage') }}</span>
+                        @endif
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="fees" class="form-label">Educational fees</label>
+                        <input value="{{ old('fees') }}" 
+                        type="number" 
+                        class="form-control" 
+                        name="fees" 
+                        placeholder="Educational fees" autocomplete="off">
+                        @if ($errors->has('fees'))
+                            <span class="text-danger text-left">{{ $errors->first('fees') }}</span>
+                        @endif
+                    </div>
+                </div>
+
 
                 <button type="submit" class="btn btn-primary">Save Branch</button>
                 <a href="{{ route('students.index') }}" class="btn btn-default">Back</a>
@@ -79,4 +123,8 @@
         </div>
 
     </div>
+@endsection
+
+@section('js')
+    <script src="{{ asset('js/Api/Stage/getSpecificStage.js') }}"></script>
 @endsection
