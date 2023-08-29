@@ -25,6 +25,10 @@
         <div class="lead">
             Manage your students here.
             <a href="{{ route('students.create') }}" class="btn btn-primary btn-sm float-right">Add new student</a>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn-sm btn-warning btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Upload file 
+            </button>
         </div>
         
         <div class="mt-2">
@@ -63,4 +67,6 @@
         </div>
 
     </div>
+
+    <x-import-student-data></x-import-student-data>
 @endsection

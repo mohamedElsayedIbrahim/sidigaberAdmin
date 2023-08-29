@@ -125,6 +125,7 @@ Route::middleware('site.lang')->group(function(){
             Route::get('/{student}/edit', 'StudentController@edit')->name('students.edit');
             Route::patch('/{student}/update', 'StudentController@update')->name('students.update');
             Route::delete('/{student}/delete', 'StudentController@destroy')->name('students.destroy');
+            Route::post('/import', 'StudentController@import')->name('students.import');
         });
 
         /**

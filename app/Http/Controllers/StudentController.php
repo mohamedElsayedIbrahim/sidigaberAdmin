@@ -6,6 +6,9 @@ use App\Academicyear;
 use App\Branch;
 use App\Http\Requests\StoreSturentRequest;
 use App\Http\Requests\UpdateSturentRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\StudentsImport;
+use App\Stage;
 use App\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -63,5 +66,28 @@ class StudentController extends Controller
 
         return redirect()->route('students.index')
                         ->with('success','student deleted successfully');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'excel'=>'required|mimes:xls,xlsx|file'
+        ]);
+
+        try {
+            
+            Excel::import(new StudentsImport, $request->file('excel'));
+            
+            if ($request->file('excel') != null) {
+                $extention = $request->file('excel')->getClientOriginalExtension();
+                $name = $request->file('excel')->getClientOriginalName().uniqid().$extention;
+                $request->file('excel')->storeAs('uploads/Excel/Import',$name);
+            }
+
+            return back()->with('message', 'All good!');
+
+        } catch (\Throwable $th) {
+            return back()->with('error',$th->getMessage());
+        }
     }
 }
