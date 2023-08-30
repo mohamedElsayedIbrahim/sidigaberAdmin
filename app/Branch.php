@@ -11,4 +11,12 @@ class Branch extends Model
     function stages(){
         return $this->belongsToMany('App\Stage');
     }
+
+    function users(){
+        return $this->belongsToMany(User::class);
+    }
+
+    function studentEnrollments(){
+        return $this->hasMany(StudentEnrollments::class);
+    }
 }

@@ -32,8 +32,10 @@ class Student extends Model
             'updated_at'=>Carbon::now(),
             'created_at'=>Carbon::now()
         ]);
-
         return true;
+    }
 
+    function studentEnrollments(){
+        return $this->hasMany(StudentEnrollments::class);
     }
 }

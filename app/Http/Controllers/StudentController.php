@@ -12,13 +12,17 @@ use App\Stage;
 use App\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
     public function index(){
         $students = Student::latest()->paginate(10);
-        return view('students.index',['students'=>$students]);
+        $branches = array_map(function($branch){
+            return $branch['id'];
+        },Auth::user()->branches->toArray());
+        return view('students.index',['students'=>$students,'branches'=>$branches]);
     }
 
     public function create()

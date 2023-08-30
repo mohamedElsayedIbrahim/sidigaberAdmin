@@ -41,23 +41,27 @@
                 <th scope="col" width="1%">#</th>
                 <th scope="col" width="15%">Name</th>
                 <th scope="col" width="15%">National ID</th>
+                <th scope="col" width="15%">School</th>
                 <th scope="col" width="1%" colspan="3"></th>    
             </tr>
             </thead>
             <tbody>
                 @foreach($students as $student)
-                    <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $student->fullname }}</td>
-                        <td>{{ $student->id }}</td>
-                        <td><a href="{{ route('students.show', $student->id) }}" class="btn btn-warning btn-sm">Show</a></td>
-                        <td><a href="{{ route('students.edit', $student->id) }}" class="btn btn-info btn-sm">Edit</a></td>
-                        <td>
-                            {!! Form::open(['method' => 'DELETE','route' => ['students.destroy', $student->id],'style'=>'display:inline']) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                            {!! Form::close() !!}
-                        </td>
-                    </tr>
+                    @if (in_array($student->studentEnrollments->last()->branch->id,$branches))
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $student->fullname }}</td>
+                            <td>{{ $student->id }}</td>
+                            <td>{{$student->studentEnrollments->last()->branch->title}}</td>
+                            <td><a href="{{ route('students.show', $student->id) }}" class="btn btn-warning btn-sm">Show</a></td>
+                            <td><a href="{{ route('students.edit', $student->id) }}" class="btn btn-info btn-sm">Edit</a></td>
+                            <td>
+                                {!! Form::open(['method' => 'DELETE','route' => ['students.destroy', $student->id],'style'=>'display:inline']) !!}
+                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                {!! Form::close() !!}
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>

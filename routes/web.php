@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BranchController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -132,8 +133,23 @@ Route::middleware('site.lang')->group(function(){
          * student Routes
         */
 
+        /**
+         * student Routes
+         */
+        Route::group(['prefix' => 'responsibilities'], function() {
+            Route::get('/', 'ResponsibilityController@index')->name('responsibilities.index');
+            Route::get('/create', 'ResponsibilityController@create')->name('responsibilities.create');
+            Route::post('/create', 'ResponsibilityController@store')->name('responsibilities.store');
+            Route::delete('/{user}/delete', 'ResponsibilityController@destroy')->where('user','[0-9]+')->name('responsibilities.destroy');
+        });
+
+        /**
+         * student Routes
+        */
+
         Route::middleware('json')->group(function(){
             Route::get('get/{branch}/stage',[StageController::class,'get_branch_stage']);
+            Route::get('get/branches',[BranchController::class,'index']);
         });
 
     });
