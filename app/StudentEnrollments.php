@@ -23,4 +23,8 @@ class StudentEnrollments extends Model
     function academicyear(){
         return $this->belongsTo(Academicyear::class);
     }
+
+    function expenses(){
+        return $this->hasMany(Expense::class);
+    }
 }

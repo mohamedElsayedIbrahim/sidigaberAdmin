@@ -147,6 +147,19 @@ Route::middleware('site.lang')->group(function(){
          * student Routes
         */
 
+        /**
+         * student Routes
+         */
+        Route::group(['prefix' => 'expenses'], function() {
+            Route::get('/', 'ExpenseController@index')->name('expenses.index');
+            Route::get('{expense}/edit', 'ExpenseController@create')->name('expenses.edit');
+            Route::post('{expense}/update', 'ExpenseController@store')->name('expenses.update');
+        });
+
+        /**
+         * student Routes
+        */
+
         Route::middleware('json')->group(function(){
             Route::get('get/{branch}/stage',[StageController::class,'get_branch_stage']);
             Route::get('get/branches',[BranchController::class,'index']);

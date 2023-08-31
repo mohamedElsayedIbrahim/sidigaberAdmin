@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Academicyear;
+use App\Expense;
 use App\Student;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -31,11 +32,17 @@ class StudentsImport implements ToCollection, WithHeadingRow
                 'gender' => $row['gender'],
             ]);
 
-            $student->enrollments([
+            $record = $student->enrollments([
                 'student'=>$row['nid'],
                 'year'=>$year,
                 'school'=>$row['school'],
                 'stage'=>$row['stage'],
+            ]);
+
+            Expense::create([
+                'student_enrollment_id'=>$record,
+                'fees'=>$row['fees'],
+                'type'=>$row['type']
             ]);
         }
 

@@ -24,7 +24,7 @@ class Student extends Model
             return false;
         }
 
-        DB::table('student_enrollments')->insert([
+      $record = DB::table('student_enrollments')->insertGetId([
             'academicyear_id'=>$request['year']->id,
             'branch_id'=>$request['school'],
             'stage_id'=>$request['stage'],
@@ -32,7 +32,8 @@ class Student extends Model
             'updated_at'=>Carbon::now(),
             'created_at'=>Carbon::now()
         ]);
-        return true;
+        
+        return $record;
     }
 
     function studentEnrollments(){

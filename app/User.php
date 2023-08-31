@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Models\Role;
 
 class User extends Authenticatable
 {
@@ -42,6 +44,5 @@ class User extends Authenticatable
     function branches(){
         return $this->belongsToMany(Branch::class);
     }
-
     
 }
