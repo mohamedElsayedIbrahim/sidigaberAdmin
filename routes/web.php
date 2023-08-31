@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BranchController;
+use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,8 @@ Route::middleware('site.lang')->group(function(){
 
         /**
          * Login Routes
-         */
+        */
+
         Route::get('/', 'AuthController@login')->name('login');
         Route::post('/handel/login','AuthController@handel_login')->name('login.handel');
 
@@ -38,7 +40,8 @@ Route::middleware('site.lang')->group(function(){
     Route::group(['middleware' => ['auth', 'permission']], function() {
         /**
          * Logout Routes
-         */
+        */
+
         Route::get('/logout', 'AuthController@logout')->name('logout');
 
         
@@ -49,7 +52,8 @@ Route::middleware('site.lang')->group(function(){
 
         /**
          * user Routes
-         */
+        */
+
         Route::group(['prefix' => 'users'], function() {
             Route::get('/', 'UsersController@index')->name('users.index');
             Route::get('/create', 'UsersController@create')->name('users.create');
@@ -64,9 +68,10 @@ Route::middleware('site.lang')->group(function(){
          * user Routes
          */
 
-         /**
+        /**
          * stage Routes
-         */
+        */
+
         Route::group(['prefix' => 'stages'], function() {
             Route::get('/', 'StageController@index')->name('stages.index');
             Route::get('/create', 'StageController@create')->name('stages.create');
@@ -83,7 +88,8 @@ Route::middleware('site.lang')->group(function(){
 
         /**
          * branch Routes
-         */
+        */
+
         Route::group(['prefix' => 'branches'], function() {
             Route::get('/', 'BranchController@index')->name('branches.index');
             Route::get('/create', 'BranchController@create')->name('branches.create');
@@ -100,7 +106,8 @@ Route::middleware('site.lang')->group(function(){
 
         /**
          * academicyear Routes
-         */
+        */
+
         Route::group(['prefix' => 'academicyear'], function() {
             Route::get('/', 'AcademicyearController@index')->name('academicyears.index');
             Route::get('/create', 'AcademicyearController@create')->name('academicyears.create');
@@ -117,7 +124,8 @@ Route::middleware('site.lang')->group(function(){
 
         /**
          * student Routes
-         */
+        */
+
         Route::group(['prefix' => 'student'], function() {
             Route::get('/', 'StudentController@index')->name('students.index');
             Route::get('/create', 'StudentController@create')->name('students.create');
@@ -135,7 +143,8 @@ Route::middleware('site.lang')->group(function(){
 
         /**
          * student Routes
-         */
+        */
+
         Route::group(['prefix' => 'responsibilities'], function() {
             Route::get('/', 'ResponsibilityController@index')->name('responsibilities.index');
             Route::get('/create', 'ResponsibilityController@create')->name('responsibilities.create');
@@ -149,7 +158,8 @@ Route::middleware('site.lang')->group(function(){
 
         /**
          * student Routes
-         */
+        */
+
         Route::group(['prefix' => 'expenses'], function() {
             Route::get('/', 'ExpenseController@index')->name('expenses.index');
             Route::get('{expense}/edit', 'ExpenseController@create')->name('expenses.edit');
@@ -163,8 +173,10 @@ Route::middleware('site.lang')->group(function(){
         Route::middleware('json')->group(function(){
             Route::get('get/{branch}/stage',[StageController::class,'get_branch_stage']);
             Route::get('get/branches',[BranchController::class,'index']);
+            Route::get('{expence}/show',[ExpenseController::class,'show']);
         });
 
     });
+    
 });
 
