@@ -15,7 +15,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route("app.board")}}">@lang('site.home')</a></li>
-          <li class="breadcrumb-item active" aria-current="page">@lang('dashboard.expenses')</li>
+          <li class="breadcrumb-item active" aria-current="page">@lang('dashboard.expenses.index')</li>
         </ol>
     </nav>
 </div>
@@ -30,6 +30,7 @@
         <x-alert></x-alert>
     </div>
 
+    </div>
     <table class="table table-bordered">
       <tr>
          <th width="1%">No</th>
@@ -45,7 +46,9 @@
             <td>{{ $expense->student_enrollment->branch->title }}</td>
             <td>{{ $expense->pay  == '0' ? __('dashboard.pay.true'): __('dashboard.pay.false') }}</td>
             <td>
-                <a class="btn btn-info btn-sm">Show</a>
+                <button type="button" data-expence="{{$expense->id}}" class="btn btn-primary btnshow" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    show
+                </button>
             </td>
             <td>
                 <a class="btn btn-primary btn-sm" href="{{ route('expenses.edit', $expense->id) }}">Edit</a>
@@ -59,4 +62,10 @@
     </div>
 
 </div>
+
+<x-expense.show></x-expense.show>
+@endsection
+
+@section('js')
+    <script type="module" src="{{ asset('js/api/expenses/show.js') }}"></script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Academicyear;
 use App\Branch;
+use App\Expense;
 use App\Http\Requests\StoreSturentRequest;
 use App\Http\Requests\UpdateSturentRequest;
 use Maatwebsite\Excel\Facades\Excel;
@@ -36,11 +37,17 @@ class StudentController extends Controller
 
         $student->create($request->validated());
         $year = Academicyear::where('year','=',Carbon::now()->format('Y').'/'.Carbon::now()->addYear()->format('Y'))->first();
-        $student->enrollments(array_merge($request->all(),[
+        $record = $student->enrollments(array_merge($request->all(),[
             'student'=>$request->id,
             'year'=>$year,
         ]));
 
+        Expense::create([
+            'student_enrollment_id'=>$record,
+            'fees'=>$request->fees,
+            'type'=>'school'
+        ]);
+        
         return redirect()->route('students.index')
                         ->with('success','student created successfully');
     }

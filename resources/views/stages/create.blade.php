@@ -15,7 +15,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route("app.board")}}">@lang('site.home')</a></li>
-          <li class="breadcrumb-item"><a href="{{route("stages.index")}}">@lang('dashboard.stages')</a></li>
+          <li class="breadcrumb-item"><a href="{{route("stages.index")}}">@lang('dashboard.stages.index')</a></li>
           <li class="breadcrumb-item active" aria-current="page">@lang('dashboard.studentInfo')</li>
         </ol>
     </nav>
