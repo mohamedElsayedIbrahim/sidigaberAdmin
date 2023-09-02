@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
 {
-    function show(Expense $expense) : object {
+    function show($expense) : object {
+        $expense = Expense::find($expense);
         return $this->sendResponse(new ExpenseResource($expense));
     }
 }

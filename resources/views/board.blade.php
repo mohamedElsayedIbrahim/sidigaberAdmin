@@ -40,11 +40,11 @@
     <div class="col-md-3">
       <div class="statistics p-3">
         <h2 class="text-danger"><u>@lang('dashboard.statistics')</u></h2>
-        {{-- <ul class="list-unstyled">
-          <li>@lang('dashboard.TotalStudent'): <strong>{{$studentNumber}}</strong></li>
-          <li>@lang('dashboard.PaiedSchool'): <strong>{{$paied}}</strong></li>
-          <li>@lang('dashboard.PaiedBus'): <strong>{{$busPaied}}</strong></li>
-        </ul> --}}
+        <ul class="list-unstyled">
+          <li>@lang('dashboard.TotalStudent'): <strong>{{$student->count}}</strong></li>
+          {{-- <li>@lang('dashboard.PaiedSchool'): <strong>{{$paied}}</strong></li>
+          <li>@lang('dashboard.PaiedBus'): <strong>{{$busPaied}}</strong></li> --}}
+        </ul>
       </div>
     </div>
 </div>

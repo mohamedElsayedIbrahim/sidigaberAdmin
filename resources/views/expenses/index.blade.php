@@ -36,24 +36,28 @@
          <th width="1%">No</th>
          <th>Name</th>
          <th>School</th>
-         <th>paied status</th>
+         <th>Type</th>
+         <th>Paied status</th>
          <th width="3%" colspan="3">Action</th>
       </tr>
         @foreach ($expenses as $expense)
-        <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $expense->student_enrollment->student->fullname }}</td>
-            <td>{{ $expense->student_enrollment->branch->title }}</td>
-            <td>{{ $expense->pay  == '0' ? __('dashboard.pay.true'): __('dashboard.pay.false') }}</td>
-            <td>
-                <button type="button" data-expence="{{$expense->id}}" class="btn btn-primary btnshow" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    show
-                </button>
-            </td>
-            <td>
-                <a class="btn btn-primary btn-sm" href="{{ route('expenses.edit', $expense->id) }}">Edit</a>
-            </td>
-        </tr>
+            @if (in_array($expense->student_enrollment->branch->id,$branches))
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $expense->student_enrollment->student->fullname }}</td>
+                    <td>{{ $expense->student_enrollment->branch->title }}</td>
+                    <td>{{ $expense->type}}</td>
+                    <td>{{ $expense->pay  == '0' ? __('dashboard.pay.false'): __('dashboard.pay.true') }}</td>
+                    <td>
+                        <button type="button" data-expence="{{$expense->id}}" class="btn btn-primary btn-sm btnshow" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            show
+                        </button>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="{{ route('expenses.edit', $expense->id) }}">Edit</a>
+                    </td>
+                </tr>
+            @endif
         @endforeach
     </table>
 

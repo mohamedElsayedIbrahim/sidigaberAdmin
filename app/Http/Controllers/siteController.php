@@ -2,31 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Student;
+use App\StudentEnrollments;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class siteController extends Controller
 {
     public function board()
     {
-        // $studentNumber = DB::table('educationalfee')
-        // ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        // ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
-        // ->where('educationalfee.stype' ,'=' ,'مصروفات دراسية')
-        // ->count();
-
-        // $paied = DB::table('educationalfee')
-        // ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        // ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
-        // ->where('educationalfee.stype' ,'=' ,'مصروفات دراسية')
-        // ->whereNotNull('educationalfee.image_name')->count();
-
-        // $busPaied = DB::table('educationalfee')
-        // ->join('eductionalstudent', 'educationalfee.ssn', '=', 'eductionalstudent.ssn')
-        // ->select('eductionalstudent.studentName','eductionalstudent.ssn','educationalfee.image_name')
-        // ->where('educationalfee.stype' ,'=' ,'اشتراك اتوبيس طلاب')
-        // ->count();
+        $branches = array_map(function($branch){
+            return $branch['id'];
+        },Auth::user()->branches->toArray());
         
-        return view('board');
+        $student = Student::Join('student_enrollments','students.id','=','student_enrollments.student_id')->
+        select(DB::raw('count(students.id) as count'))->whereIn('student_enrollments.branch_id',$branches)->first();
+        
+        return view('board', ['student'=> $student]);
     }
 }

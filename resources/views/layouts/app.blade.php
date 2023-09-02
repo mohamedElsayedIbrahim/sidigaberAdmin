@@ -8,7 +8,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     @yield('css')  
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="shortcut icon" href="app/public/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://sidigaber.org/images/websites.png" type="image/x-icon">
 </head>
   <body>
     <x-layout.navbar></x-layout.navbar>

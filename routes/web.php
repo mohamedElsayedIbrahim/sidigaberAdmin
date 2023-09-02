@@ -177,6 +177,8 @@ Route::middleware('site.lang')->group(function(){
         });
 
     });
+
+
     
 });
 

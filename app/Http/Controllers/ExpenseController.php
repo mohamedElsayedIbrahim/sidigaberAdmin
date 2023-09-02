@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Expense;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExpenseController extends Controller
 {
@@ -15,8 +16,10 @@ class ExpenseController extends Controller
     public function index()
     {
         $expense = Expense::paginate(10);
-
-        return view('expenses.index',['expenses'=>$expense]);
+        $branches = array_map(function($branch){
+            return $branch['id'];
+        },Auth::user()->branches->toArray());
+        return view('expenses.index',['expenses'=>$expense,'branches'=>$branches]);
     }
 
     /**
