@@ -91,7 +91,7 @@ class StudentController extends Controller
             
             if ($request->file('excel') != null) {
                 $extention = $request->file('excel')->getClientOriginalExtension();
-                $name = $request->file('excel')->getClientOriginalName().uniqid().$extention;
+                $name = 'excel-'.uniqid().$extention;
                 $request->file('excel')->storeAs('uploads/Excel/Import',$name);
             }
 
