@@ -5,8 +5,10 @@ namespace App\Imports;
 use App\Academicyear;
 use App\Expense;
 use App\Student;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -43,6 +45,13 @@ class StudentsImport implements ToCollection, WithHeadingRow
                 'student_enrollment_id'=>$record,
                 'fees'=>$row['fees'],
                 'type'=>$row['type']
+            ]);
+
+            User::create([
+                'name'=> $row['nid'],
+                'password' => Hash::make($row['nid']),
+                'email'=>"student-".$row['nid']."@app.com",
+                'type'=>'student'
             ]);
         }
 
