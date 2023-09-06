@@ -16,9 +16,9 @@ class CreateBranchStageTable extends Migration
         Schema::create('branch_stage', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('stage_id')->unsigned()->nullable();
-            $table->foreign('stage_id')->on('stages')->references('id')->onDelete('set null');
+            $table->foreign('stage_id')->on('stages')->references('id')->cascadeOnDelete();
             $table->bigInteger('branch_id')->unsigned()->nullable();
-            $table->foreign('branch_id')->on('branches')->references('id')->onDelete('set null');
+            $table->foreign('branch_id')->on('branches')->references('id')->cascadeOnDelete();
             $table->timestamps();
         });
     }

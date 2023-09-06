@@ -16,9 +16,9 @@ class CreateBranchesUsersTable extends Migration
         Schema::create('branch_user', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('branch_id')->nullable()->unsigned();
-            $table->foreign('branch_id')->on('branches')->references('id')->onDelete('set null');
+            $table->foreign('branch_id')->on('branches')->references('id')->cascadeOnDelete();
             $table->bigInteger('user_id')->nullable()->unsigned();
-            $table->foreign('user_id')->on('users')->references('id')->onDelete('set null');
+            $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
             $table->timestamps();
         });
     }

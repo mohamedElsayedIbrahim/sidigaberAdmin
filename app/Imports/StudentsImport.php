@@ -44,9 +44,10 @@ class StudentsImport implements ToCollection, WithHeadingRow
             Expense::create([
                 'student_enrollment_id'=>$record,
                 'fees'=>$row['fees'],
-                'type'=>$row['type']
+                'type'=>$row['type'],
+                'depoisit'=>$row['depoisit']
             ]);
-
+            // I1$@vGU8L@Iu
             User::create([
                 'name'=> $row['nid'],
                 'password' => Hash::make($row['nid']),
