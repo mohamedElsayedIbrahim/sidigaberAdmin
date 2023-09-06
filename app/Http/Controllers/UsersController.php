@@ -18,7 +18,7 @@ class UsersController extends Controller
      */
     public function index() 
     {
-        $users = User::where('type','=','user')->latest()->paginate(10);
+        $users = User::whereIn('type',['user','admin'])->latest()->paginate(10);
 
         return view('users.index', compact('users'));
     }
@@ -46,7 +46,7 @@ class UsersController extends Controller
         //For demo purposes only. When creating user or inviting a user
         // you should create a generated random password and email it to the user
         $record = $user->create(array_merge($request->validated(), [
-            'password' => Hash::make('test') 
+            'password' => Hash::make('123456789') 
         ]));
 
         $record->syncRoles($request->get('role'));

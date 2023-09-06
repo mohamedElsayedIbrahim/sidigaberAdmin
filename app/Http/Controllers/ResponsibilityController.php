@@ -15,7 +15,7 @@ class ResponsibilityController extends Controller
     }
 
     public function create(){
-        $users = User::select('id','name')->get();
+        $users = User::select('id','name')->whereIn('type',['user','admin'])->get();
         return view('responsibilities.create',['users'=>$users]);
     }
 
