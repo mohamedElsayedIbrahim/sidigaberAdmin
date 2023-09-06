@@ -10,7 +10,7 @@ use PhpParser\Node\Stmt\Return_;
 class ResponsibilityController extends Controller
 {
     public function index(){
-        $users = User::paginate(10);
+        $users = User::whereIn('type',['user','admin'])->paginate(10);
         return view('responsibilities.index',['users'=>$users]);
     }
 

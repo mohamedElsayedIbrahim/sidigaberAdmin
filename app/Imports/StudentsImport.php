@@ -27,7 +27,6 @@ class StudentsImport implements ToCollection, WithHeadingRow
         foreach ($rows as $row) 
         {
 
-            print_r($row);
             $student = Student::create([
                 'id'=> $row['nid'],
                 'fullname' => $row['name'],
