@@ -71,5 +71,5 @@
 @endsection
 
 @section('js')
-    <script type="module" src="{{ asset('js/api/expenses/show.js') }}"></script>
+    <script type="module" src="{{ asset('js/Api/expenses/show.js') }}"></script>
 @endsection

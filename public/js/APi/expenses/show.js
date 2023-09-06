@@ -37,7 +37,7 @@ function display(data)
 
         <tr>
           <th>National ID</th>
-          <td>${data.student.nid}</td>
+          <td>${data.student.id}</td>
         </tr>
 
         <tr>
