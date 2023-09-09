@@ -22,4 +22,6 @@ return[
 'expenses.index'=>'Educational expenses',
 'pay.true'=>'Paied',
 'pay.false'=>'Not paied',
+'upload.true'=>'upload File',
+'upload.false'=>'Not upload File',
 ];

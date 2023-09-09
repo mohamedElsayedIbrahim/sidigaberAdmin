@@ -15,7 +15,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expense = Expense::paginate(10);
+        $expense = Expense::orderBy('created_at','ASC')->paginate(10);
         $branches = array_map(function($branch){
             return $branch['id'];
         },Auth::user()->branches->toArray());

@@ -22,4 +22,6 @@ return[
 'expenses.index'=>'المصروفات الدراسية',
 'pay.true'=>'مدفوع',
 'pay.false'=>'لم يتم الدفع',
+'upload.true'=>'تم رفع ايصال',
+'upload.false'=>'لم يتم رفع ايصال',
 ];

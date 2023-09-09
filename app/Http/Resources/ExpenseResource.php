@@ -25,6 +25,8 @@ class ExpenseResource extends JsonResource
             'year' => $this->student_enrollment->academicyear,
             'stage' => $this->student_enrollment->stage,
             'type'=>$this->type,
+            'front'=>$this->front,
+            'back'=>$this->back,
         ];
     }
 }

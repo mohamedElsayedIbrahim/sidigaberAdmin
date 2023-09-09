@@ -26,6 +26,8 @@ if (btns.length > 0) {
 function display(data)
 {
     return `
+    <div class="row">
+            <div class="col-md-8">
     <div>
     <h2 class="text-danger">Student information</h2>
     <table class="table table-striped">
@@ -98,6 +100,18 @@ function display(data)
 
       </tbody>
     </table>
+  </div>
+
+
+  </div>
+
+  <div class="col-md-4">
+              <h2 class="text-danger">Upload Reciept</h2>
+              <small class="text-capitalize">front face</small>
+              <div>${data.front !== null ? `<img src="https://app.sidigaber.org/bank/${data.front}" alt="recipt backface" class="w-100">`:'N/A'}</div>
+              <small class="text-capitalize">back face</small>
+              <div>${data.back !== null ? `<img src="https://app.sidigaber.org/bank/${data.back}" alt="recipt backface" class="w-100">`:'N/A'}</div>
+  </div>
   </div>
 
     `;
