@@ -15,6 +15,15 @@ if (btns.length > 0) {
             //display Data
             document.querySelector('.modal-body').innerHTML = display(data);
             //set system api injection data
+            document.getElementById('formUpdate').action = `${location.origin}/expenses/${expence}/update/status`;
+            if (data.pay == "paied") {
+              document.getElementById('formUpdate').parentNode.classList.add('d-none');
+              document.getElementById('formUpdate').parentNode.classList.remove('d-block');
+            }else
+            {
+              document.getElementById('formUpdate').parentNode.classList.add('d-block');
+              document.getElementById('formUpdate').parentNode.classList.remove('d-none');
+            }
             console.log(data);
             setTimeout(() => {
                 el.classList.replace('d-flex','d-none')

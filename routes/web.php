@@ -163,7 +163,8 @@ Route::middleware('site.lang')->group(function(){
         Route::group(['prefix' => 'expenses'], function() {
             Route::get('/', 'ExpenseController@index')->name('expenses.index');
             Route::get('{expense}/edit', 'ExpenseController@create')->name('expenses.edit');
-            Route::post('{expense}/update', 'ExpenseController@store')->name('expenses.update');
+            Route::post('{expense}/update', 'ExpenseController@update')->name('expenses.update');
+            Route::post('{expense}/update/status', 'ExpenseController@update_status')->name('expenses.update.recipt');
         });
 
         /**

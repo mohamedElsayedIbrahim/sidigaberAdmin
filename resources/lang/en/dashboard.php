@@ -24,4 +24,10 @@ return[
 'pay.false'=>'Not paied',
 'upload.true'=>'upload File',
 'upload.false'=>'Not upload File',
+'paid.update'=>'Please select a valid pay status',
+'paid'=>'Recipt Upload Sataus',
+'paid.true'=>'valid',
+'paid.false'=>'invalid',
+'choose'=>'Choose...',
+'error'=>'error occurs while updating',
 ];

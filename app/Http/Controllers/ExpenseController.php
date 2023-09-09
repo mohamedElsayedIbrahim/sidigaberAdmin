@@ -87,4 +87,25 @@ class ExpenseController extends Controller
     {
         //
     }
+
+    public function update_status(Request $request, $id) {
+        $request->validate([
+            'paymentStatus'=>'required|string|in:paid,un-paid'
+        ]);
+
+        $expense = Expense::find($id);
+
+        if($expense == null)
+        {
+            return back()->with('error',__('dashboard.error'));
+        }
+
+        $status = $request->paymentStatus == 'paid' ? '1' : '0';
+
+        $expense->update([
+            'pay'=>$status    
+        ]);
+
+        return back()->with('message','success');
+    }
 }

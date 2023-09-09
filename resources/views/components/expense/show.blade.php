@@ -92,9 +92,51 @@
               <div><img src="" alt="recipt backface" class="w-100"></div>
               <small class="text-capitalize">front face</small>
               <div><img src="" alt="recipt backface" class="w-100"></div>
+
+              <form id="formUpdate" method="POST" class="row g-3 needs-validation" novalidate>
+                
+                @csrf
+
+                <div class="col-md-12 mb-3">
+                  <label for="validationServer04" class="form-label">State</label>
+                  <select class="form-select" name="paymentStatus" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                    <option value="">Choose...</option>
+                    <option value="paid">valid</option>
+                    <option value="un-paid">invalid</option>
+                  </select>
+                  <div id="validationServer04Feedback" class="invalid-feedback">
+                    Please select a valid paied status.
+                  </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">save Data</button>
+                </div>
+              </form>
             </div>
           </div>
 
+        </div>
+        <div class="modal-footer">
+          <form id="formUpdate" class="row w-100 needs-validation" method="POST" novalidate>
+            @csrf
+            <div class="col-md-12 mb-3">
+              <label for="validationServer04" class="form-label">@lang('dashboard.paid')</label>
+              <select class="form-select" name="paymentStatus" id="validationServer04" required>
+                <option selected disabled value="">@lang('dashboard.choose')</option>
+                <option value="paid">@lang('dashboard.paid.true')</option>
+                <option value="un-paid">@lang('dashboard.paid.false')</option>
+              </select>
+              <div id="validationServer04Feedback" class="invalid-feedback">
+                @lang('dashboard.paid.update')
+              </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">save status</button>
+            </div>
+
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
