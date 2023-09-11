@@ -11,10 +11,12 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\StudentsImport;
 use App\Stage;
 use App\Student;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -47,7 +49,15 @@ class StudentController extends Controller
         Expense::create([
             'student_enrollment_id'=>$record,
             'fees'=>$request->fees,
-            'type'=>'school'
+            'type'=>'school',
+            'depoisit'=>$request->fees
+        ]);
+
+        User::create([
+            'name'=> $record,
+            'password' => Hash::make($record),
+            'email'=>"student-".$record."@app.com",
+            'type'=>'student'
         ]);
         
         return redirect()->route('students.index')
