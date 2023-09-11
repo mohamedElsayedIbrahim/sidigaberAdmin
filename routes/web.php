@@ -172,6 +172,18 @@ Route::middleware('site.lang')->group(function(){
          * student Routes
         */
 
+        /**
+         * search Routes
+        */
+
+        Route::group(['prefix' => 'search'], function() {
+            Route::get('/expense/filter', 'ExpenseController@search')->name('filter.expense');
+        });
+
+        /**
+         * search Routes
+        */
+
         Route::middleware('json')->group(function(){
             Route::get('get/{branch}/stage',[StageController::class,'get_branch_stage']);
             Route::get('get/branches',[BranchController::class,'index']);

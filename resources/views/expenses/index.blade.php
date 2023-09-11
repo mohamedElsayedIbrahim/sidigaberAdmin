@@ -30,6 +30,26 @@
         <x-alert></x-alert>
     </div>
 
+    <div class="mt-2 border border-1 rounded-2 p-1">
+        <h3 class="text-danger">Search...</h3>
+        <form action="{{ route('filter.expense') }}" class="row g-3 needs-validation align-items-center" novalidate method="GET">
+            <div class="col-md-3">
+                <label for="validationCustom04" class="form-label">File Status</label>
+                <select class="form-select" name="upload_file" id="validationCustom04" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option {{request()->get('upload_file') == 'true' ? 'selected':''}} value="true">Uploaded File</option>
+                  <option {{request()->get('upload_file') == 'false' ? 'selected':''}}value="false">Not Uploaded File</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid state.
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <button class="btn btn-outline-dark" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
     </div>
     <table class="table table-bordered">
       <tr>
