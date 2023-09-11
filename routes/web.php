@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\Api\BranchController;
 use App\Http\Controllers\Api\ExpenseController;
-use App\Http\Controllers\LangController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Api\StageController;
 use Illuminate\Support\Facades\Route;
 
 /*
