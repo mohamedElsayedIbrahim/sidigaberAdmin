@@ -47,21 +47,21 @@
             </thead>
             <tbody>
                 @foreach($students as $student)
-                    @if (in_array($student->studentEnrollments->last()->branch->id,$branches))
-                        <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $student->fullname }}</td>
-                            <td>{{ $student->id }}</td>
-                            <td>{{$student->studentEnrollments->last()->branch->title}}</td>
-                            <td><a href="{{ route('students.show', $student->id) }}" class="btn btn-warning btn-sm">Show</a></td>
-                            <td><a href="{{ route('students.edit', $student->id) }}" class="btn btn-info btn-sm">Edit</a></td>
-                            <td>
-                                {!! Form::open(['method' => 'DELETE','route' => ['students.destroy', $student->id],'style'=>'display:inline']) !!}
-                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                                {!! Form::close() !!}
-                            </td>
-                        </tr>
-                    @endif
+                    
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $student->fullname }}</td>
+                        <td>{{ $student->student_id }}</td>
+                        <td>{{$student->title}}</td>
+                        <td><a href="{{ route('students.show', $student->student_id) }}" class="btn btn-warning btn-sm">Show</a></td>
+                        <td><a href="{{ route('students.edit', $student->student_id) }}" class="btn btn-info btn-sm">Edit</a></td>
+                        <td>
+                            {!! Form::open(['method' => 'DELETE','route' => ['students.destroy', $student->student_id],'style'=>'display:inline']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                            {!! Form::close() !!}
+                        </td>
+                    </tr>
+                    
                 @endforeach
             </tbody>
         </table>

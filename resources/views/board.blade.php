@@ -11,7 +11,8 @@
 @section('content')
 
 <div class="row">
-
+    <x-alert></x-alert>
+    
     <div class="col-md-9">
 
       <h2 class="text-capitalize">services</h2>

@@ -44,6 +44,8 @@ Route::middleware('site.lang')->group(function(){
 
         Route::get('/logout', 'AuthController@logout')->name('logout');
 
+        Route::post('/change-password', 'AuthController@change_password')->name('change.password');
+
         
         Route::get('/app', 'siteController@board')->name('app.board');
 

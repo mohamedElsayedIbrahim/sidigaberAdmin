@@ -12,4 +12,8 @@ return [
     'welcome' => 'Welcome to our service, Login please.',
     'welcomeUser'=>'welcome',
     'nodata' => 'soory, there are No data for view!',
+    'change.pass' => 'Change password',
+    'modal.close' => 'Close',
+    'modal.save.change' => 'Save changes',
+
 ];

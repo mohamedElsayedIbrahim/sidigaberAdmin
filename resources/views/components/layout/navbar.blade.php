@@ -25,6 +25,10 @@
             <a class="nav-link active" aria-current="page" href="{{ route('logout') }}">@lang('site.logout')</a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="modal" href="#staticBackdrop">@lang('site.change.pass')</a>
+          </li>
+
           @endauth
 
           <li class="nav-item dropdown">

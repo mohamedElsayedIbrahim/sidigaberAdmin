@@ -19,10 +19,12 @@ use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
     public function index(){
-        $students = Student::latest()->paginate(10);
         $branches = array_map(function($branch){
             return $branch['id'];
         },Auth::user()->branches->toArray());
+
+        $students = Student::join('student_enrollments','student_enrollments.student_id','=','students.id')->Join('branches','student_enrollments.branch_id','=','branches.id')->whereIn('student_enrollments.branch_id',$branches)->paginate(10);
+        
         return view('students.index',['students'=>$students,'branches'=>$branches]);
     }
 

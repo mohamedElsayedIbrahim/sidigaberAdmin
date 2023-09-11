@@ -15,10 +15,11 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expense = Expense::orderBy('created_at','ASC')->paginate(10);
         $branches = array_map(function($branch){
             return $branch['id'];
         },Auth::user()->branches->toArray());
+        $expense = Expense::join('student_enrollments','student_enrollments.id','expenses.student_enrollment_id')->whereIn('student_enrollments.branch_id',$branches)->paginate(10);
+
         return view('expenses.index',['expenses'=>$expense,'branches'=>$branches]);
     }
 

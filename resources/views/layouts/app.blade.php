@@ -22,6 +22,8 @@
 
     </section>
 
+    <x-user.change-password />
+
     <x-layout.footer></x-layout.footer>
 
     
