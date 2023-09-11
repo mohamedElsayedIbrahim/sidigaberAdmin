@@ -22,7 +22,7 @@ class CreateStudentEnrollmentsTable extends Migration
             $table->bigInteger('stage_id')->nullable()->unsigned();
             $table->foreign('stage_id')->on('stages')->references('id')->cascadeOnDelete();
             $table->string('student_id',14)->nullable();
-            $table->foreign('student_id')->on('students')->references('id')->cascadeOnDelete();
+            $table->foreign('student_id')->on('students')->references('id')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

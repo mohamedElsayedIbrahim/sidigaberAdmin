@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\StudentsImport;
 use App\Stage;
 use App\Student;
+use App\StudentEnrollments;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -54,9 +55,9 @@ class StudentController extends Controller
         ]);
 
         User::create([
-            'name'=> $record,
-            'password' => Hash::make($record),
-            'email'=>"student-".$record."@app.com",
+            'name'=> $request->id,
+            'password' => Hash::make($request->id),
+            'email'=>"student-".$request->id."@app.com",
             'type'=>'student'
         ]);
         
@@ -76,8 +77,15 @@ class StudentController extends Controller
 
     public function update(Student $student, UpdateSturentRequest $request)
     {
-
+        $student_id = $student->id;
         $student->update($request->validated());
+        $orginal = $student->getOriginal();
+        $user= User::where('name','=',$student_id)->first();
+        $user->update([
+            'name'=> $request->id,
+            'password' => Hash::make($request->id),
+            'email'=>"student-".$request->id."@app.com",
+        ]);
 
         return redirect()->route('students.index')
                         ->with('success','student updated successfully');
