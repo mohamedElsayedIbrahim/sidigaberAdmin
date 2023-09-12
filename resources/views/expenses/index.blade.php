@@ -25,6 +25,12 @@
     <div class="lead">
         Manage your expenses here.
     </div>
+    <div>
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#busExpenses">
+    @lang('dashboard.pay.bus')
+  </button>
+    </div>
     
     <div class="mt-2">
         <x-alert></x-alert>
@@ -34,8 +40,8 @@
         <h3 class="text-danger">Search...</h3>
         <form action="{{ route('filter.expense') }}" class="row g-3 needs-validation align-items-center" novalidate method="GET">
             <div class="col-md-3">
-                <label for="validationCustom04" class="form-label">File Status</label>
-                <select class="form-select" name="upload_file" id="validationCustom04" required>
+                <label for="validationCustom09" class="form-label">File Status</label>
+                <select class="form-select" name="upload_file" id="validationCustom09" required>
                   <option selected disabled value="">Choose...</option>
                   <option {{request()->get('upload_file') == 'true' ? 'selected':''}} value="true">Uploaded File</option>
                   <option {{request()->get('upload_file') == 'false' ? 'selected':''}}value="false">Not Uploaded File</option>
@@ -76,9 +82,9 @@
                     show
                 </button>
             </td>
-            <td>
+            {{-- <td>
                 <a class="btn btn-primary btn-sm" href="{{ route('expenses.edit', $expense->id) }}">Edit</a>
-            </td>
+            </td> --}}
         </tr>
         @endforeach
     </table>
@@ -90,8 +96,10 @@
 </div>
 
 <x-expense.show></x-expense.show>
+<x-bus-expenses></x-bus-expenses>
 @endsection
 
 @section('js')
     <script type="module" src="{{ asset('js/Api/expenses/show.js') }}"></script>
+    <script src="{{ asset('js/web/expense.js') }}"></script>
 @endsection

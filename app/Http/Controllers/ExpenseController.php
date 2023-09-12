@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Expense;
+use App\Services\EnrollService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,6 +40,32 @@ class ExpenseController extends Controller
         }
         return view('expenses.index',['expenses'=>$expense]);
 
+    }
+
+    public function bus_expenses(Request $request) {
+        $request->validate([
+            'year'=>'required|exists:academicyears,id',
+            'expense'=>'required',
+            'students'=>'required',
+            'students:*'=>'exists:students,id'
+        ]);
+
+        try {
+            foreach($request->students as $student)
+            {
+                $id = EnrollService::get_enrollment_id($student,$request->year)->id;
+                Expense::create([
+                    'student_enrollment_id'=>$id,
+                    'fees'=>$request->expense,
+                    'type'=>'bus',
+                    'depoisit'=>'سنة دراسية'
+                ]);
+            }
+
+            return back()->with('message',__('success.submitted'));
+        } catch (\Throwable $th) {
+            return back()->with('message',$th->getMessage());
+        }
     }
 
     /**

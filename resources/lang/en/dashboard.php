@@ -30,4 +30,5 @@ return[
 'paid.false'=>'invalid',
 'choose'=>'Choose...',
 'error'=>'error occurs while updating',
+'pay.bus'=>'Enable student to pay Bus',
 ];

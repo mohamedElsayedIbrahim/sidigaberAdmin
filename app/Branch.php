@@ -19,4 +19,9 @@ class Branch extends Model
     function studentEnrollments(){
         return $this->hasMany(StudentEnrollments::class);
     }
+
+    protected $casts = [
+        'id' => 'integer',
+        'title' => 'string'
+    ];
 }

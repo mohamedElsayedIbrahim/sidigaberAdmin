@@ -133,13 +133,13 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary">save status</button>
+                <button type="submit" class="btn btn-primary">@lang('site.modal.save')</button>
             </div>
 
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('site.modal.close')</button>
         </div>
       </div>
     </div>
