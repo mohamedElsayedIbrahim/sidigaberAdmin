@@ -6,8 +6,11 @@ use App\Http\Controllers\Api\StageController;
 use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\YearController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BranchController as ControllersBranchController;
 use App\Http\Controllers\ExpenseController as ControllersExpenseController;
 use App\Http\Controllers\siteController;
+use App\Http\Controllers\StageController as ControllersStageController;
+use App\Http\Controllers\StudentController as ControllersStudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -79,13 +82,13 @@ Route::middleware('site.lang')->group(function(){
         */
 
         Route::group(['prefix' => 'stages'], function() {
-            Route::get('/', [StageController::class,'index'])->name('stages.index');
-            Route::get('/create', [StageController::class,'create'])->name('stages.create');
-            Route::post('/create', [StageController::class,'store'])->name('stages.store');
-            Route::get('/{stage}/show', [StageController::class,'show'])->name('stages.show');
-            Route::get('/{stage}/edit', [StageController::class,'edit'])->name('stages.edit');
-            Route::patch('/{stage}/update', [StageController::class,'update'])->name('stages.update');
-            Route::delete('/{stage}/delete', [StageController::class,'destroy'])->name('stages.destroy');
+            Route::get('/', [ControllersStageController::class,'index'])->name('stages.index');
+            Route::get('/create', [ControllersStageController::class,'create'])->name('stages.create');
+            Route::post('/create', [ControllersStageController::class,'store'])->name('stages.store');
+            Route::get('/{stage}/show', [ControllersStageController::class,'show'])->name('stages.show');
+            Route::get('/{stage}/edit', [ControllersStageController::class,'edit'])->name('stages.edit');
+            Route::patch('/{stage}/update', [ControllersStageController::class,'update'])->name('stages.update');
+            Route::delete('/{stage}/delete', [ControllersStageController::class,'destroy'])->name('stages.destroy');
         });
 
         /**
@@ -97,13 +100,13 @@ Route::middleware('site.lang')->group(function(){
         */
 
         Route::group(['prefix' => 'branches'], function() {
-            Route::get('/', [BranchController::class,'index'])->name('branches.index');
-            Route::get('/create', [BranchController::class,'create'])->name('branches.create');
-            Route::post('/create', [BranchController::class,'store'])->name('branches.store');
-            Route::get('/{branch}/show', [BranchController::class,'show'])->name('branches.show');
-            Route::get('/{branch}/edit', [BranchController::class,'edit'])->name('branches.edit');
-            Route::patch('/{branch}/update', [BranchController::class,'update'])->name('branches.update');
-            Route::delete('/{branch}/delete', [BranchController::class,'destroy'])->name('branches.destroy');
+            Route::get('/', [ControllersBranchController::class,'index'])->name('branches.index');
+            Route::get('/create', [ControllersBranchController::class,'create'])->name('branches.create');
+            Route::post('/create', [ControllersBranchController::class,'store'])->name('branches.store');
+            Route::get('/{branch}/show', [ControllersBranchController::class,'show'])->name('branches.show');
+            Route::get('/{branch}/edit', [ControllersBranchController::class,'edit'])->name('branches.edit');
+            Route::patch('/{branch}/update', [ControllersBranchController::class,'update'])->name('branches.update');
+            Route::delete('/{branch}/delete', [ControllersBranchController::class,'destroy'])->name('branches.destroy');
         });
 
         /**
@@ -114,7 +117,7 @@ Route::middleware('site.lang')->group(function(){
          * academicyear Routes
         */
 
-        Route::group(['prefix' => 'academicyear'], function() {
+        Route::group(['prefix' => 'academicyears'], function() {
             Route::get('/', [AcademicyearController::class,'index'])->name('academicyears.index');
             Route::get('/create', [AcademicyearController::class,'create'])->name('academicyears.create');
             Route::post('/create', [AcademicyearController::class,'store'])->name('academicyears.store');
@@ -132,15 +135,15 @@ Route::middleware('site.lang')->group(function(){
          * student Routes
         */
 
-        Route::group(['prefix' => 'student'], function() {
-            Route::get('/', [StudentController::class,'index'])->name('students.index');
-            Route::get('/create', [StudentController::class,'create'])->name('students.create');
-            Route::post('/create', [StudentController::class,'store'])->name('students.store');
-            Route::get('/{student}/show', [StudentController::class,'show'])->name('students.show');
-            Route::get('/{student}/edit', [StudentController::class,'edit'])->name('students.edit');
-            Route::patch('/{student}/update', [StudentController::class,'update'])->name('students.update');
-            Route::delete('/{student}/delete', [StudentController::class,'destroy'])->name('students.destroy');
-            Route::post('/import', [StudentController::class,'import'])->name('students.import');
+        Route::group(['prefix' => 'students'], function() {
+            Route::get('/', [ControllersStudentController::class,'index'])->name('students.index');
+            Route::get('/create', [StudentControllerControllersStudentController::class,'create'])->name('students.create');
+            Route::post('/create', [StudentControllerControllersStudentController::class,'store'])->name('students.store');
+            Route::get('/{student}/show', [StudentControllerControllersStudentController::class,'show'])->name('students.show');
+            Route::get('/{student}/edit', [StudentControllerControllersStudentController::class,'edit'])->name('students.edit');
+            Route::patch('/{student}/update', [StudentControllerControllersStudentController::class,'update'])->name('students.update');
+            Route::delete('/{student}/delete', [StudentControllerControllersStudentController::class,'destroy'])->name('students.destroy');
+            Route::post('/import', [StudentControllerControllersStudentController::class,'import'])->name('students.import');
         });
 
         /**
