@@ -30,7 +30,7 @@
         </div>
 
         <div class="container mt-4">
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('students.store') }}">
                 @csrf
                 
                 <div class="mb-3">

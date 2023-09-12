@@ -1,18 +1,17 @@
 <?php
 
-use App\Http\Controllers\AcademicyearController;
-use App\Http\Controllers\Api\BranchController;
-use App\Http\Controllers\Api\ExpenseController;
-use App\Http\Controllers\Api\StageController;
-use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\Api\BranchController as ApiBranchController;
+use App\Http\Controllers\Api\ExpenseController as ApiExpenseController;
+use App\Http\Controllers\Api\StageController as ApiStageController;
+use App\Http\Controllers\Api\StudentController as ApiStudentController;
 use App\Http\Controllers\Api\YearController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BranchController as ControllersBranchController;
-use App\Http\Controllers\ExpenseController as ControllersExpenseController;
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ResponsibilityController;
 use App\Http\Controllers\siteController;
-use App\Http\Controllers\StageController as ControllersStageController;
-use App\Http\Controllers\StudentController as ControllersStudentController;
+use App\Http\Controllers\StageController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -85,13 +84,13 @@ Route::middleware('site.lang')->group(function(){
         */
 
         Route::group(['prefix' => 'stages'], function() {
-            Route::get('/', [ControllersStageController::class,'index'])->name('stages.index');
-            Route::get('/create', [ControllersStageController::class,'create'])->name('stages.create');
-            Route::post('/create', [ControllersStageController::class,'store'])->name('stages.store');
-            Route::get('/{stage}/show', [ControllersStageController::class,'show'])->name('stages.show');
-            Route::get('/{stage}/edit', [ControllersStageController::class,'edit'])->name('stages.edit');
-            Route::patch('/{stage}/update', [ControllersStageController::class,'update'])->name('stages.update');
-            Route::delete('/{stage}/delete', [ControllersStageController::class,'destroy'])->name('stages.destroy');
+            Route::get('/', [StageController::class,'index'])->name('stages.index');
+            Route::get('/create', [StageController::class,'create'])->name('stages.create');
+            Route::post('/create', [StageController::class,'store'])->name('stages.store');
+            Route::get('/{stage}/show', [StageController::class,'show'])->name('stages.show');
+            Route::get('/{stage}/edit', [StageController::class,'edit'])->name('stages.edit');
+            Route::patch('/{stage}/update', [StageController::class,'update'])->name('stages.update');
+            Route::delete('/{stage}/delete', [StageController::class,'destroy'])->name('stages.destroy');
         });
 
         /**
@@ -103,13 +102,13 @@ Route::middleware('site.lang')->group(function(){
         */
 
         Route::group(['prefix' => 'branches'], function() {
-            Route::get('/', [ControllersBranchController::class,'index'])->name('branches.index');
-            Route::get('/create', [ControllersBranchController::class,'create'])->name('branches.create');
-            Route::post('/create', [ControllersBranchController::class,'store'])->name('branches.store');
-            Route::get('/{branch}/show', [ControllersBranchController::class,'show'])->name('branches.show');
-            Route::get('/{branch}/edit', [ControllersBranchController::class,'edit'])->name('branches.edit');
-            Route::patch('/{branch}/update', [ControllersBranchController::class,'update'])->name('branches.update');
-            Route::delete('/{branch}/delete', [ControllersBranchController::class,'destroy'])->name('branches.destroy');
+            Route::get('/', [BranchController::class,'index'])->name('branches.index');
+            Route::get('/create', [BranchController::class,'create'])->name('branches.create');
+            Route::post('/create', [BranchController::class,'store'])->name('branches.store');
+            Route::get('/{branch}/show', [BranchController::class,'show'])->name('branches.show');
+            Route::get('/{branch}/edit', [BranchController::class,'edit'])->name('branches.edit');
+            Route::patch('/{branch}/update', [BranchController::class,'update'])->name('branches.update');
+            Route::delete('/{branch}/delete', [BranchController::class,'destroy'])->name('branches.destroy');
         });
 
         /**
@@ -139,14 +138,14 @@ Route::middleware('site.lang')->group(function(){
         */
 
         Route::group(['prefix' => 'students'], function() {
-            Route::get('/', [ControllersStudentController::class,'index'])->name('students.index');
-            Route::get('/create', [ControllersStudentController::class,'create'])->name('students.create');
-            Route::post('/create', [ControllersStudentController::class,'store'])->name('students.store');
-            Route::get('/{student}/show', [ControllersStudentController::class,'show'])->name('students.show');
-            Route::get('/{student}/edit', [ControllersStudentController::class,'edit'])->name('students.edit');
-            Route::patch('/{student}/update', [ControllersStudentController::class,'update'])->name('students.update');
-            Route::delete('/{student}/delete', [ControllersStudentController::class,'destroy'])->name('students.destroy');
-            Route::post('/import', [ControllersStudentController::class,'import'])->name('students.import');
+            Route::get('/', [StudentController::class,'index'])->name('students.index');
+            Route::get('/create', [StudentController::class,'create'])->name('students.create');
+            Route::post('/store', [StudentController::class,'store'])->name('students.store');
+            Route::get('/{student}/show', [StudentController::class,'show'])->name('students.show');
+            Route::get('/{student}/edit', [StudentController::class,'edit'])->name('students.edit');
+            Route::patch('/{student}/update', [StudentController::class,'update'])->name('students.update');
+            Route::delete('/{student}/delete', [StudentController::class,'destroy'])->name('students.destroy');
+            Route::post('/import', [StudentController::class,'import'])->name('students.import');
         });
 
         /**
@@ -173,11 +172,11 @@ Route::middleware('site.lang')->group(function(){
         */
 
         Route::group(['prefix' => 'expenses'], function() {
-            Route::get('/', [ControllersExpenseController::class,'index'])->name('expenses.index');
-            Route::get('{expense}/edit', [ControllersExpenseController::class,'create'])->name('expenses.edit');
-            Route::Post('/bus/expense', [ControllersExpenseController::class,'bus_expenses'])->name('expenses.bus');
-            Route::post('{expense}/update', [ControllersExpenseController::class,'update'])->name('expenses.update');
-            Route::post('{expense}/update/status', [ControllersExpenseController::class,'update_status'])->name('expenses.update.recipt');
+            Route::get('/', [ExpenseController::class,'index'])->name('expenses.index');
+            Route::get('{expense}/edit', [ExpenseController::class,'create'])->name('expenses.edit');
+            Route::Post('/bus/expense', [ExpenseController::class,'bus_expenses'])->name('expenses.bus');
+            Route::post('{expense}/update', [ExpenseController::class,'update'])->name('expenses.update');
+            Route::post('{expense}/update/status', [ExpenseController::class,'update_status'])->name('expenses.update.recipt');
         });
 
         /**
@@ -189,7 +188,7 @@ Route::middleware('site.lang')->group(function(){
         */
 
         Route::group(['prefix' => 'search'], function() {
-            Route::get('/expense/filter', [ControllersExpenseController::class,'search'])->name('filter.expense');
+            Route::get('/expense/filter', [ExpenseController::class,'search'])->name('filter.expense');
         });
 
         /**
@@ -197,11 +196,11 @@ Route::middleware('site.lang')->group(function(){
         */
 
         Route::middleware('json')->group(function(){
-            Route::get('get/{branch}/stage',[StageController::class,'get_branch_stage']);
-            Route::get('get/branches',[BranchController::class,'index']);
+            Route::get('get/{branch}/stage',[ApiStageController::class,'get_branch_stage']);
+            Route::get('get/branches',[ApiBranchController::class,'index']);
             Route::get('get/years',[YearController::class,'get_all_years']);
-            Route::get('get/students',[StudentController::class,'get_all_students']);
-            Route::get('{expence}/show',[ExpenseController::class,'show']);
+            Route::get('get/students',[ApiStudentController::class,'get_all_students']);
+            Route::get('{expence}/show',[ApiExpenseController::class,'show']);
         });
 
     });
