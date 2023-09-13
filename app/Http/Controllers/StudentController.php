@@ -93,6 +93,8 @@ class StudentController extends Controller
 
     public function destroy(Student $student)
     {
+        User::where('name','=',$student->id)->delete();
+        
         $student->delete();
 
         return redirect()->route('students.index')
