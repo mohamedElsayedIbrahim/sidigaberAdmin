@@ -62,7 +62,7 @@ class StudentController extends Controller
         ]);
         
         return redirect()->route('students.index')
-                        ->with('success','student created successfully');
+                        ->with('message','student created successfully');
     }
 
     public function show(Student $student)
@@ -88,7 +88,7 @@ class StudentController extends Controller
         ]);
 
         return redirect()->route('students.index')
-                        ->with('success','student updated successfully');
+                        ->with('message','student updated successfully');
     }
 
     public function destroy(Student $student)
@@ -98,7 +98,7 @@ class StudentController extends Controller
         $student->delete();
 
         return redirect()->route('students.index')
-                        ->with('success','student deleted successfully');
+                        ->with('message','student deleted successfully');
     }
 
     public function import(Request $request)

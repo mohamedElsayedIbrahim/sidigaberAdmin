@@ -46,7 +46,7 @@ Route::middleware('site.lang')->group(function(){
 
     });
 
-    Route::group(['middleware' => ['auth', 'permission']], function() {
+    Route::group(['middleware' => ['is.login', 'permission']], function() {
         /**
          * Logout Routes
         */
@@ -176,6 +176,7 @@ Route::middleware('site.lang')->group(function(){
             Route::get('{expense}/edit', [ExpenseController::class,'create'])->name('expenses.edit');
             Route::Post('/bus/expense', [ExpenseController::class,'bus_expenses'])->name('expenses.bus');
             Route::post('{expense}/update', [ExpenseController::class,'update'])->name('expenses.update');
+            Route::post('{expense}/delete', [ExpenseController::class,'destroy'])->name('expenses.destroy');
             Route::post('{expense}/update/status', [ExpenseController::class,'update_status'])->name('expenses.update.recipt');
         });
 

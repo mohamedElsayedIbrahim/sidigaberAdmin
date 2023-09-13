@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Expense;
 use App\Services\EnrollService;
+use App\StudentEnrollments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +20,18 @@ class ExpenseController extends Controller
         $branches = array_map(function($branch){
             return $branch['id'];
         },Auth::user()->branches->toArray());
-        $expense = Expense::join('student_enrollments','student_enrollments.id','expenses.student_enrollment_id')->whereIn('student_enrollments.branch_id',$branches)->paginate(10);
 
-        return view('expenses.index',['expenses'=>$expense,'branches'=>$branches]);
+        $expenses = Expense::get();
+        $passed = $expenses->filter(function ($expense) {
+            if(in_array($expense->student_enrollment->branch_id,array_map(function($branch){
+                return $branch['id'];
+            },Auth::user()->branches->toArray()))){
+                return $expense;
+            }
+        });
+
+        
+        return view('expenses.index',['expenses'=>$passed,'branches'=>$branches]);
     }
 
     public function search()
@@ -31,14 +41,28 @@ class ExpenseController extends Controller
         },Auth::user()->branches->toArray());
         $upload = request()->get('upload_file');
 
+        $expenses = Expense::get();
+
         if ($upload == null){
             return redirect()->route('expenses.index');
         } elseif($upload == "true") {
-            $expense = Expense::join('student_enrollments','student_enrollments.id','expenses.student_enrollment_id')->whereIn('student_enrollments.branch_id',$branches)->WhereNotNull('expenses.back')->WhereNotNull('expenses.front')->paginate(10);
+            $passed = $expenses->filter(function ($expense) {
+                if(in_array($expense->student_enrollment->branch_id,array_map(function($branch){
+                    return $branch['id'];
+                },Auth::user()->branches->toArray())) && $expense->back !== null && $expense->front !== null){
+                    return $expense;
+                }
+            });
         } else {
-        $expense = Expense::join('student_enrollments','student_enrollments.id','expenses.student_enrollment_id')->whereIn('student_enrollments.branch_id',$branches)->whereNull('expenses.back')->whereNull('expenses.front')->paginate(10);
+            $passed = $expenses->filter(function ($expense) {
+                if(in_array($expense->student_enrollment->branch_id,array_map(function($branch){
+                    return $branch['id'];
+                },Auth::user()->branches->toArray())) && $expense->back == null && $expense->front == null){
+                    return $expense;
+                }
+            });
         }
-        return view('expenses.index',['expenses'=>$expense]);
+        return view('expenses.index',['expenses'=>$passed]);
 
     }
 
@@ -131,7 +155,9 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
-        //
+        $expense->delete();
+
+        return back()->with('message','student deleted successfully');
     }
 
     public function update_status(Request $request, $id) {

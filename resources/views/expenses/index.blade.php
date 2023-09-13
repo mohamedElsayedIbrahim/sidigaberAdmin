@@ -69,6 +69,7 @@
          <th width="3%" colspan="3">Action</th>
       </tr>
         @foreach ($expenses as $expense)
+        
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $expense->student_enrollment->student->fullname }}</td>
@@ -82,16 +83,12 @@
                     show
                 </button>
             </td>
-            {{-- <td>
-                <a class="btn btn-primary btn-sm" href="{{ route('expenses.edit', $expense->id) }}">Edit</a>
-            </td> --}}
+            <td>
+                <a class="btn btn-danger btn-sm" href="{{ route('expenses.destroy', $expense->id) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            </td>
         </tr>
         @endforeach
     </table>
-
-    <div class="d-flex">
-        {!! $expenses->links() !!}
-    </div>
 
 </div>
 

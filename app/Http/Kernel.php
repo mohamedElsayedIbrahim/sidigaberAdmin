@@ -56,7 +56,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        // 'is.login' => \App\Http\Middleware\IsLogin::class,
+        'is.login' => \App\Http\Middleware\IsLogin::class,
         // 'is.guest' => \App\Http\Middleware\IsGuest::class,
         // 'is.user' => \App\Http\Middleware\IsUser::class,
         'site.lang' => \App\Http\Middleware\SiteLang::class,
