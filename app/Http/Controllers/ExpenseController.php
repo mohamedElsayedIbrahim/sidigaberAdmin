@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Expense;
 use App\Services\EnrollService;
 use App\StudentEnrollments;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,7 @@ class ExpenseController extends Controller
             return $branch['id'];
         },Auth::user()->branches->toArray());
 
-        $expenses = Expense::get();
+        $expenses = Expense::orderBy('updated_at','DESC')->get();
         $passed = $expenses->filter(function ($expense) {
             if(in_array($expense->student_enrollment->branch_id,array_map(function($branch){
                 return $branch['id'];
@@ -39,25 +40,30 @@ class ExpenseController extends Controller
         $branches = array_map(function($branch){
             return $branch['id'];
         },Auth::user()->branches->toArray());
-        $upload = request()->get('upload_file');
 
-        $expenses = Expense::get();
+        
+        $expenses = Expense::where(function(Builder $query){
+            if (request()->get('upload_file') != null && request()->get('upload_file') == "true") {
+                $query->whereNotNull('front')->whereNotNull('back');
+            }
+            if (request()->get('upload_file') != null && request()->get('upload_file') == "false") {
+                $query->whereNull('front')->whereNull('back');
+            }
+            if (request()->get('paied_status') != null && request()->get('paied_status') == "true") {
+                $query->where('pay',1);
+            }
+            if (request()->get('paied_status') != null && request()->get('paied_status') == "false") {
+                $query->where('pay',0);
+            }
+        })->orderBy('updated_at','DESC')->get();
 
-        if ($upload == null){
+        if (request()->get('upload_file') == null){
             return redirect()->route('expenses.index');
-        } elseif($upload == "true") {
-            $passed = $expenses->filter(function ($expense) {
-                if(in_array($expense->student_enrollment->branch_id,array_map(function($branch){
-                    return $branch['id'];
-                },Auth::user()->branches->toArray())) && $expense->back !== null && $expense->front !== null){
-                    return $expense;
-                }
-            });
         } else {
             $passed = $expenses->filter(function ($expense) {
                 if(in_array($expense->student_enrollment->branch_id,array_map(function($branch){
                     return $branch['id'];
-                },Auth::user()->branches->toArray())) && $expense->back == null && $expense->front == null){
+                },Auth::user()->branches->toArray()))){
                     return $expense;
                 }
             });

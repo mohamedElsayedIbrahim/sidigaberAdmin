@@ -9,6 +9,7 @@ return[
 'statistics'=> 'Statistics',
 'TotalStudent' => 'Total Student',
 'PaiedSchool'=>'Paied School',
+'NotPaiedSchool'=>'Not paied School',
 'PaiedBus' => 'Paied Bus',
 'studentInfo' => 'Student Information',
 'users.index'=>'users system',

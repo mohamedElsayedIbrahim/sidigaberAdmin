@@ -50,6 +50,17 @@
                   Please select a valid state.
                 </div>
             </div>
+            <div class="col-md-3">
+                <label for="validationCustom09" class="form-label">Paied Status</label>
+                <select class="form-select" name="paied_status" id="validationCustom09">
+                  <option selected disabled value="">Choose...</option>
+                  <option {{request()->get('paied_status') == 'true' ? 'selected':''}} value="true">Paied</option>
+                  <option {{request()->get('paied_status') == 'false' ? 'selected':''}}value="false">Not Paied</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid state.
+                </div>
+            </div>
 
             <div class="col-md-12">
                 <button class="btn btn-outline-dark" type="submit">Search</button>

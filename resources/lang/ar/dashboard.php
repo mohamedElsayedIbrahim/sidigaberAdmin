@@ -9,6 +9,7 @@ return[
 'statistics'=> 'احصاءات',
 'TotalStudent' => 'اجمالى الطلاب',
 'PaiedSchool'=>'المصروفات المدفوعة',
+'NotPaiedSchool'=>'المصروفات غير مدفوعة',
 'PaiedBus' => 'اشتراك الاتوبيس',
 'studentInfo' => 'معلومات الطلاب',
 'users.index'=>'المستخدمين',
