@@ -89,9 +89,9 @@
             <div class="col-md-4">
               <h2 class="text-danger">Upload Reciept</h2>
               <small class="text-capitalize">back face</small>
-              <div><img src="" alt="recipt backface" class="w-100"></div>
+              <div id="backImage"><img src="" alt="recipt backface" class="w-100"></div>
               <small class="text-capitalize">front face</small>
-              <div><img src="" alt="recipt backface" class="w-100"></div>
+              <div id="frontImage"><img src="" alt="recipt backface" class="w-100"></div>
 
               <form id="formUpdate" method="POST" class="row g-3 needs-validation" novalidate>
                 
@@ -133,7 +133,7 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary">@lang('site.modal.save')</button>
+                <button type="submit" class="btn btn-primary">@lang('site.modal.save.change')</button>
             </div>
 
           </form>

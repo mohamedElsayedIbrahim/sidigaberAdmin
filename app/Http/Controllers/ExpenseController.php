@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Expense;
 use App\Services\EnrollService;
 use App\StudentEnrollments;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -180,9 +181,19 @@ class ExpenseController extends Controller
 
         $status = $request->paymentStatus == 'paid' ? '1' : '0';
 
-        $expense->update([
-            'pay'=>$status    
-        ]);
+        if ($status == 1) {
+            $expense->update([
+                'pay'=>$status,
+                'payment_date'=>Carbon::now(),   
+            ]);
+        } else {
+            $expense->update([
+                'pay'=>$status,
+                'back'=>null,   
+                'front'=>null,   
+            ]);
+        }
+        
 
         return back()->with('message','success');
     }

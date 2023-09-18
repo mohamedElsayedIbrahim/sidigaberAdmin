@@ -9,6 +9,11 @@
     @include('layouts.header')
 @endsection
 
+@section('css')
+<link rel="stylesheet" src="https://cdn.jsdelivr.net/gh/cotton123236/zoomist@latest/dist/zoomist.min.css"/>
+    
+@endsection
+
 @section('content')
     
 <div class="navigation">
@@ -108,6 +113,8 @@
 @endsection
 
 @section('js')
+            
+<script src="https://cdn.jsdelivr.net/gh/cotton123236/zoomist@latest/dist/zoomist.min.js"></script>
     <script type="module" src="{{ asset('js/Api/expenses/show.js') }}"></script>
     <script src="{{ asset('js/web/expense.js') }}"></script>
 @endsection
