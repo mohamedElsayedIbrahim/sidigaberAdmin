@@ -35,6 +35,23 @@
             <x-alert></x-alert>
         </div>
 
+        <div class="mt-2 border border-1 rounded-2 p-1">
+            <h3 class="text-danger">Search...</h3>
+            <form action="{{ route('students.search') }}" class="row g-3 needs-validation align-items-center" novalidate method="GET">
+                <div class="col-md-3">
+                    <label for="validationCustom09" class="form-label">search Student</label>
+                    <input type="text" id="validationCustom09" class="form-control" name="q">
+                    <div class="invalid-feedback">
+                      Please select a valid state.
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+
         <table class="table table-striped">
             <thead>
             <tr>

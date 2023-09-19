@@ -146,6 +146,7 @@ Route::middleware('site.lang')->group(function(){
             Route::patch('/{student}/update', [StudentController::class,'update'])->name('students.update');
             Route::delete('/{student}/delete', [StudentController::class,'destroy'])->name('students.destroy');
             Route::post('/import', [StudentController::class,'import'])->name('students.import');
+            Route::get('/search', [StudentController::class,'search'])->name('students.search');
         });
 
         /**

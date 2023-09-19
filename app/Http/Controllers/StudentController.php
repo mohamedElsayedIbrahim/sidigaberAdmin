@@ -9,6 +9,7 @@ use App\Http\Requests\StoreSturentRequest;
 use App\Http\Requests\UpdateSturentRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\StudentsImport;
+use App\Services\StudentService;
 use App\Stage;
 use App\Student;
 use App\StudentEnrollments;
@@ -122,5 +123,23 @@ class StudentController extends Controller
         } catch (\Throwable $th) {
             return back()->with('error',$th->getMessage());
         }
+    }
+
+    public function search()
+    {
+        $search = request()->get('q');
+
+        if ($search == null) {
+            return redirect()->route('students.index');
+        }
+
+        $branches = array_map(function($branch){
+            return $branch['id'];
+        },Auth::user()->branches->toArray());
+
+        $students = Student::join('student_enrollments','student_enrollments.student_id','=','students.id')->Join('branches','student_enrollments.branch_id','=','branches.id')->whereIn('student_enrollments.branch_id',$branches)->Where('students.fullname','like',"%$search%")->orWhere('students.id','like',"%$search%")->paginate(10);
+        
+        return view('students.index',['students'=>$students,'branches'=>$branches]);
+
     }
 }
