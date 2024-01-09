@@ -32,4 +32,5 @@ return[
 'choose'=>'Choose...',
 'error'=>'error occurs while updating',
 'pay.bus'=>'Enable student to pay Bus',
+'admission.index'=>'students admission',
 ];

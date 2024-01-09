@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AcademicyearController;
+use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\Api\BranchController as ApiBranchController;
 use App\Http\Controllers\Api\ExpenseController as ApiExpenseController;
 use App\Http\Controllers\Api\StageController as ApiStageController;
@@ -200,6 +201,18 @@ Route::middleware('site.lang')->group(function(){
         /**
          * search Routes
         */
+
+        /**
+         * user Routes
+        */
+
+        Route::group(['prefix' => 'admissions'], function() {
+            Route::get('/', [AdmissionController::class,'index'])->name('admission.index');
+        });
+
+        /**
+         * user Routes
+         */
 
         Route::middleware('json')->group(function(){
             Route::get('get/{branch}/stage',[ApiStageController::class,'get_branch_stage']);
