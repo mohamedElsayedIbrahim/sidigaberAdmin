@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Branch extends Model
 {
-    protected $fillable = ['title'];
+    protected $fillable = ['title','alise'];
 
     function stages(){
         return $this->belongsToMany('App\Stage');
@@ -23,6 +23,7 @@ class Branch extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'title' => 'string'
+        'title' => 'string',
+        'alise' => 'string'
     ];
 }

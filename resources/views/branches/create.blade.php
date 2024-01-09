@@ -44,6 +44,19 @@
                         <span class="text-danger text-left">{{ $errors->first('title') }}</span>
                     @endif
                 </div>
+
+                <div class="mb-3">
+                    <label for="alise" class="form-label">Alise Name</label>
+                    <input value="{{ old('alise') }}" 
+                        type="text" 
+                        class="form-control" 
+                        name="alise" 
+                        placeholder="Name" required>
+
+                    @if ($errors->has('alise'))
+                        <span class="text-danger text-left">{{ $errors->first('alise') }}</span>
+                    @endif
+                </div>
                 
 
                 <button type="submit" class="btn btn-primary">Save Branch</button>
