@@ -15,6 +15,8 @@ class siteController extends Controller
         $branches = array_map(function($branch){
             return $branch['id'];
         },Auth::user()->branches->toArray());
+
+        dd(Auth::user()->roles);
         
         $student = Student::Join('student_enrollments','students.id','=','student_enrollments.student_id')->
         select(DB::raw('count(students.id) as count'))->whereIn('student_enrollments.branch_id',$branches)->first();

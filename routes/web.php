@@ -50,7 +50,7 @@ Route::middleware('site.lang')->group(function(){
 
     });
 
-    Route::group(['middleware' => ['is.login', 'permission']], function() {
+    Route::group(['middleware' => ['auth', 'permission']], function() {
         /**
          * Logout Routes
         */

@@ -69,7 +69,6 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'json' => \App\Http\Middleware\JsonResponse::class,
         'site.lang' => \App\Http\Middleware\SiteLang::class,
-        'is.login' => \App\Http\Middleware\IsLogin::class,
 
 
     ];
