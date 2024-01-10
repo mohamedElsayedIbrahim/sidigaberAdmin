@@ -21,4 +21,8 @@ class AdmissionController extends Controller
         return view('admissions.index',['branches'=>$branches,'data'=>$data]);
     }
     
+    public function student_info(Request $request){
+        $data = AdmissionService::get_student_data($request->id);
+        return response()->json($data);
+    }
 }

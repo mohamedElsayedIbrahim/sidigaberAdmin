@@ -18,7 +18,6 @@
       <h2 class="text-capitalize">services</h2>
 
       <div class="row">
-
         @foreach (Auth::user()->roles[0]->permissions as $permission)
         
             @if (Str::contains($permission->name,'index'))

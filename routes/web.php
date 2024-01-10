@@ -220,6 +220,7 @@ Route::middleware('site.lang')->group(function(){
             Route::get('get/years',[YearController::class,'get_all_years']);
             Route::get('get/students',[ApiStudentController::class,'get_all_students']);
             Route::get('{expence}/show',[ApiExpenseController::class,'show']);
+            Route::get('student/{id}/show',[AdmissionController::class,'student_info']);
         });
 
     });

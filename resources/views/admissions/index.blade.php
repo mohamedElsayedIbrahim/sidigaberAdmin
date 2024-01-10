@@ -70,7 +70,7 @@
          <th width="3%" colspan="3">Action</th>
       </tr>
         <tbody>
-            @foreach ($data['data'] as $item)
+            @foreach ($data['data']['data'] as $item)
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$item['student_name_arabic']}}</td>
@@ -79,7 +79,7 @@
                     <td>day:{{$item['student_day']}}- month: {{$item['student_month']}}-year: {{$item['student_year']}}</td>
                     <td>{{$item['branch']}}</td>
                     <td>{{$item['created_at']}}</td>
-                    <td><button class="btn btn-primary" data-app-id="{{$item['uuid']}}">show Appliction</button></td>
+                    <td><button class="btn btn-primary showBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-app-id="{{$item['uuid']}}">show Appliction</button></td>
                 </tr>
             @endforeach
         </tbody>
@@ -87,12 +87,41 @@
 
 </div>
 
-
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Student data</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3 class="text-danger">Student Info</h3>
+          <table class="table" id="student-table">
+            
+          </table>
+          <h3 class="text-danger">Student father data</h3>
+          <table class="table" id="father-table">
+            
+          </table>
+          <h3 class="text-danger">Student mother data</h3>
+          <table class="table" id="mother-table">
+            
+          </table>
+          <h3 class="text-danger">Admission documents</h3>
+          <table class="table" id="documents-table">
+            
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('js')
- <script>
-    const branches =  {{ Js::from($branches) }};
- </script>
- <script src="{{ asset('js/web/admission/index.js') }}"></script>
+<script src="{{ asset('js/web/admission/index.js') }}"></script>
 @endsection
