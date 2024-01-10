@@ -33,7 +33,6 @@
         <x-alert></x-alert>
     </div>
 
-    {{dd($branches)}}
 
     <div class="mt-2 border border-1 rounded-2 p-1">
         <h3 class="text-danger">Search...</h3>
@@ -62,15 +61,27 @@
     <table class="table table-bordered">
       <tr>
          <th width="1%">No</th>
-         <th>Name</th>
-         <th>School</th>
-         <th>Type</th>
-         <th>Paied status</th>
-         <th>Upload Reciept</th>
+         <th>Student Name</th>
+         <th>Student NID</th>
+         <th>Birthday</th>
+         <th>Age in 1 Oct</th>
          <th>Date</th>
          <th width="3%" colspan="3">Action</th>
       </tr>
-        
+        <tbody>
+            @foreach ($data['data'] as $item)
+            
+                <tr>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$item['student_name_arabic']}}</td>
+                    <td>{{$item['student_nid']}}</td>
+                    <td>{{$item['student_bod']}}</td>
+                    <td>day:{{$item['student_day']}}- month: {{$item['student_month']}}-year: {{$item['student_year']}}</td>
+                    <td>{{$item['created_at']}}</td>
+                    <td><button class="btn btn-primary" data-app-id="{{$item['uuid']}}">show Appliction</button></td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 
 </div>
@@ -79,5 +90,8 @@
 @endsection
 
 @section('js')
-  
+ <script>
+    const branches =  {{ Js::from($branches) }};
+ </script>
+ <script src="{{ asset('js/web/admission/index.js') }}"></script>
 @endsection

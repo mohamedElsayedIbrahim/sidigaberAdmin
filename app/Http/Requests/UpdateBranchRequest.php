@@ -27,6 +27,8 @@ class UpdateBranchRequest extends FormRequest
 
         return [
             'title' => 'required|string|min:3|unique:branches,title,'.$branch->id,
+            'alise'=>'required|string|min:3',
+
         ];
     }
 }

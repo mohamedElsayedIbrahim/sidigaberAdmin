@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AdmissionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,10 @@ class AdmissionController extends Controller
             return $branch['alise'];
         },Auth::user()->branches->toArray());
         
-        return view('admissions.index',['branches'=>$branches]);
+
+        $data = AdmissionService::get_all_data($branches);
+
+        return view('admissions.index',['branches'=>$branches,'data'=>$data]);
     }
     
 }

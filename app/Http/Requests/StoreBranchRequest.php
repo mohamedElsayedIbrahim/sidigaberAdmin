@@ -25,7 +25,7 @@ class StoreBranchRequest extends FormRequest
     {
         return [
             'title'=>'required|string|min:3|unique:branches,title',
-            'alise'=>'required|string|min:3|unique:branches,title',
+            'alise'=>'required|string|min:3',
         ];
     }
 }
