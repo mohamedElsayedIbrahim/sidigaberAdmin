@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DataExport;
 use App\Services\AdmissionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdmissionController extends Controller
 {
@@ -19,6 +21,15 @@ class AdmissionController extends Controller
         $data = AdmissionService::get_all_data($branches);
 
         return view('admissions.index',['branches'=>$branches,'data'=>$data]);
+    }
+
+    public function download() {
+        $branches = array_map(function($branch){
+            return $branch['alise'];
+        },Auth::user()->branches->toArray());
+        
+        AdmissionService::download_all_data($branches);
+        
     }
     
     public function student_info(Request $request){

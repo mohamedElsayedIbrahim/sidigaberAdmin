@@ -208,6 +208,7 @@ Route::middleware('site.lang')->group(function(){
 
         Route::group(['prefix' => 'admissions'], function() {
             Route::get('/', [AdmissionController::class,'index'])->name('admission.index');
+            Route::post('/download', [AdmissionController::class,'download'])->name('admission.download');
         });
 
         /**

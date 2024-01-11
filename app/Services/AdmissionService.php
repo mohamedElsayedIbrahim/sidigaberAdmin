@@ -12,6 +12,13 @@ class AdmissionService{
         return $response->json();
     }
 
+    public static function download_all_data(array $branches) : object | array |null {
+        
+        $response = Http::withToken(env('API_KEY_SECRET'))->withHeaders(['Content-Type'=>'application/json'])->post("https://app.sidigaber.org/api/admission/file/download",['branch'=>$branches]);
+
+        return $response->json();
+    }
+
     public static function get_student_data(string $id) : object | array |null {
         $response = Http::withToken(env('API_KEY_SECRET'))->withHeaders(['Content-Type'=>'application/json'])->post('https://app.sidigaber.org/api/admission/student',['id'=>$id]);
 

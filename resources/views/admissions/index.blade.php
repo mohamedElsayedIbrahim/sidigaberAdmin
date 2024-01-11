@@ -26,7 +26,10 @@
         Manage your admissions here.
     </div>
     <div>
-
+      <form action="{{ route('admission.download') }}" method="post">
+        @csrf
+        <button class="btn-dark btn" type="submit">Download all files</button>
+      </form>
     </div>
     
     <div class="mt-2">
