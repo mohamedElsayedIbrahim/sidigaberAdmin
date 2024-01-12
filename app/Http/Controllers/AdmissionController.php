@@ -28,7 +28,7 @@ class AdmissionController extends Controller
             return $branch['alise'];
         },Auth::user()->branches->toArray());
         
-        AdmissionService::download_all_data($branches);
+        $data = AdmissionService::download_all_data($branches);
         
     }
     
