@@ -29,7 +29,7 @@ class AdmissionController extends Controller
         },Auth::user()->branches->toArray());
         
         $data = AdmissionService::download_all_data($branches);
-        
+        dd($data);
     }
     
     public function student_info(Request $request){
