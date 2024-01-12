@@ -29,7 +29,10 @@ class AdmissionController extends Controller
         },Auth::user()->branches->toArray());
         
         $data = AdmissionService::download_all_data($branches);
-        dd($data);
+        if ($data['success']) {
+            return redirect()->to('https://app.sidigaber.org/'.$data['data']['file']);
+        }
+        return back()->with('message','faild operation');
     }
     
     public function student_info(Request $request){
