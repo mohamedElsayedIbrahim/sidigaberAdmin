@@ -39,6 +39,7 @@ async function getAcademic()
             cartonna += `<option value='${iterator.id}'>${iterator.year}</option>`;
         }
         document.getElementById('academicYearList').insertAdjacentHTML('beforeend',cartonna);
+        document.getElementById('academicYearListSchool').insertAdjacentHTML('beforeend',cartonna);
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expense;
+use App\Models\Student;
 use App\Services\EnrollService;
 use App\Models\StudentEnrollments;
 use Carbon\Carbon;
@@ -97,6 +98,33 @@ class ExpenseController extends Controller
         } catch (\Throwable $th) {
             return back()->with('message',$th->getMessage());
         }
+    }
+
+    function school_expenses(Request $request) {
+        $request->validate([
+            'yearSchool'=>'required|exists:academicyears,id',
+            'expense'=>'required',
+            'type'=>'required',
+        ]);
+
+        $branches = array_map(function($branch){
+            return $branch['id'];
+        },Auth::user()->branches->toArray());
+
+        $students = StudentEnrollments::whereIn('branch_id',$branches)->get();
+
+        foreach($students as $student)
+        {
+            Expense::create([
+                'student_enrollment_id'=>$student->id,
+                'fees'=>$request->expense,
+                'type'=>'school',
+                'depoisit'=>$request->type
+            ]);
+        }
+
+        return back()->with('message','Sccussfuly done!');
+
     }
 
     /**

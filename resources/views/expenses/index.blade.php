@@ -35,6 +35,9 @@
 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#busExpenses">
     @lang('dashboard.pay.bus')
   </button>
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#schoolExpenses">
+    @lang('dashboard.pay.school')
+</button>
     </div>
     
     <div class="mt-2">
@@ -105,11 +108,11 @@
         </tr>
         @endforeach
     </table>
-
 </div>
 
 <x-expense.show></x-expense.show>
 <x-bus-expenses></x-bus-expenses>
+<x-school-expenses></x-school-expenses>
 @endsection
 
 @section('js')
