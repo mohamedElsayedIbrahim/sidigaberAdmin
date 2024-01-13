@@ -33,5 +33,5 @@ return[
 'error'=>'error occurs while updating',
 'pay.bus'=>'Enable student to pay Bus',
 'admission.index'=>'students admission',
-'pay.school'=>'Deployee Second Installment'
+'pay.school'=>'Deployee School expenses'
 ];
