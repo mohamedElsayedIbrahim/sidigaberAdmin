@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,6 @@ Route::middleware('json')->group(function(){
     Route::prefix('student')->group(function(){
         Route::post('show',[StudentController::class,'student_info']);
         Route::post('get/payment/info',[StudentController::class,'student_data']);
-        // Route::post('get/expense',[])
+        Route::get('expense/{id}/show',[ExpenseController::class,'show']);
     });
 });
