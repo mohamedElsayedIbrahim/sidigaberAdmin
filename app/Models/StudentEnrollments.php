@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class StudentEnrollments extends Model
 {
     protected $table = 'student_enrollments';
+    protected $primary_key = 'id';
+    protected $fillable =['student_id'];
 
     function Student(){
         return $this->belongsTo(Student::class);
