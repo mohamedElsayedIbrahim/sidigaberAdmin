@@ -46,9 +46,9 @@ class StudentController extends Controller
 
     function student_bank(Request $request){
 
-        $expens = Expense::find($request->student);
-        
-        if ($expens !== null) {
+        $expens = Expense::where('id','=',$request->student)->first();
+
+        if ($expens == null) {
             return $this->sendError('Bad id number',[],200);
         }
 
