@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\StudentEnrollResource;
 use App\Http\Resources\StudentFullResource;
+use App\Models\Expense;
 use App\Models\Student;
 use App\Models\StudentEnrollments;
 use App\Models\User;
@@ -41,5 +42,21 @@ class StudentController extends Controller
        $enrollments = StudentEnrollments::where('student_id','=',$request->student)->first();
        return $this->sendResponse(new StudentFullResource($enrollments));
        
+    }
+
+    function student_bank(Request $request){
+
+        $expens = Expense::find($request->student);
+        
+        if ($expens !== null) {
+            return $this->sendError('Bad id number',[],200);
+        }
+
+        $expens->update([
+            'front'=>$request->front,
+            'back'=>$request->back,
+        ]);
+
+        return $this->sendResponse([],'message is done');
     }
 }
