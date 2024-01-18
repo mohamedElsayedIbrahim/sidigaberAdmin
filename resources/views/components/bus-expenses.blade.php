@@ -26,8 +26,8 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="validationCustom08" class="form-label">Expenses</label>
-                    <input type="number" name="expense" class="form-control" id="validationCustom08" required>
+                    <label for="validationCustom081" class="form-label">Expenses</label>
+                    <input type="number" name="expense" class="form-control" id="validationCustom081" required>
                     <div class="invalid-feedback">
                       Please provide a valid Expenses.
                     </div>

@@ -22,8 +22,8 @@
             </div>
 
             <div class="col-md-12">
-                <label for="validationCustom04" class="form-label">password confirmation</label>
-                <input type="password" name="password_confirmation" class="form-control" id="validationCustom04" required>
+                <label for="validationCustom0435" class="form-label">password confirmation</label>
+                <input type="password" name="password_confirmation" class="form-control" id="validationCustom0435" required>
                 <div class="invalid-feedback">
                     Please provide a valid city.
                 </div>
