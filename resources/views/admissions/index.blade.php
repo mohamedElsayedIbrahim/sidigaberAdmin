@@ -61,6 +61,8 @@
         </form>
     </div>
     </div>
+    <div class="table-responsive">
+
     <table class="table table-bordered">
       <tr>
          <th width="1%">No</th>
@@ -87,7 +89,21 @@
             @endforeach
         </tbody>
     </table>
+  </div>
 
+  <div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item {{$data['data']["current_page"] == 1 ? 'disabled':''}}">
+          <a class="page-link" href="{{ route('admission.index', ($data['data']["current_page"] - 1)) }}">Previous</a>
+        </li>
+        <li class="page-item {{$data['data']["current_page"] == $data['data']["last_page"] ? 'disabled':''}}">
+          <a class="page-link" href="{{ route('admission.index', ($data['data']["current_page"] + 1)) }}">Next</a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
 </div>
 
 <!-- Modal -->

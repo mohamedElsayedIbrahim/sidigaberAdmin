@@ -17,8 +17,10 @@ class AdmissionController extends Controller
             return $branch['alise'];
         },Auth::user()->branches->toArray());
         
+        $page = request()->id ?? 1;
 
-        $data = AdmissionService::get_all_data($branches);
+
+        $data = AdmissionService::get_all_data($branches,(int) $page);
 
         return view('admissions.index',['branches'=>$branches,'data'=>$data]);
     }

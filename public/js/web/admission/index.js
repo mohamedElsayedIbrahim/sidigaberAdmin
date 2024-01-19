@@ -10,7 +10,7 @@
                     let {data} = await response.json()
                     if (data.length >0) {
                         console.log(data[0]);
-                        let {student_name_arabic,student_name_english,student_nid,student_bod,student_day,student_month,student_year,student_gender,student_birth_city,student_address
+                        let {student_name_arabic,parents,student_name_english,student_nid,student_bod,student_day,student_month,student_year,student_gender,student_birth_city,student_address
                         } = data[0];
                         let cartonna = `
                         <tr>
@@ -39,6 +39,37 @@
             </tr>
                         `
                         document.getElementById('student-table').innerHTML = cartonna;
+                        if (parents.length > 0) {
+                            for (const iterator of parents) {
+                                let cartonna = `
+                                <tr>
+                                    <th>${iterator.parent_type} name</th>
+                                    <td>${iterator.parent_name}</td>
+                                    <th>${iterator.parent_type} phone</th>
+                                    <td>${iterator.parent_phone}</td>
+                                </tr>
+                                <tr>
+                                    <th>${iterator.parent_type} education</th>
+                                    <td>${iterator.parent_education}</td>
+                                    <th>${iterator.parent_type} job</th>
+                                    <td>${iterator.parent_job}</td>
+                                </tr>
+                                <tr>
+                                <th>${iterator.parent_type} Job address</th>
+                                <td>${iterator.parent_job_address}</td>
+                                    <th>${iterator.parent_type} job phone</th>
+                                    <td>${iterator.parent_job_phone}</td>
+                                </tr>
+                                
+                                `;
+                                if (iterator.parent_type === 'father') {
+                                    document.getElementById('father-table').innerHTML = cartonna;
+                                }else{
+                                    document.getElementById('mother-table').innerHTML = cartonna;
+                                }
+                            }
+                        }
+                        
                     }
 
                 })
