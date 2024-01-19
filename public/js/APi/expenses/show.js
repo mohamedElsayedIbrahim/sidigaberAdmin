@@ -117,9 +117,9 @@ function display(data)
   <div class="col-md-4">
               <h2 class="text-danger">Upload Reciept</h2>
               <small class="text-capitalize">front face</small>
-              <div>${data.front !== null ? `<div id="my-zoomist" data-zoomist-src="https://app.sidigaber.org/bank/${data.front}"></div>`:'N/A'}</div>
+              <div>${data.front !== null ? `<div id="my-zoomist" data-zoomist-src="https://app.sidigaber.org/bank/${data.front}"><img class='w-100' src='https://app.sidigaber.org/bank/${data.front}' /></div>`:'N/A'}</div>
               <small class="text-capitalize">back face</small>
-              <div>${data.back !== null ? `<div id="my-zoomist" data-zoomist-src="https://app.sidigaber.org/bank/${data.back}"></div>`:'N/A'}</div>
+              <div>${data.back !== null ? `<div id="my-zoomist" data-zoomist-src="https://app.sidigaber.org/bank/${data.back}"><img class='w-100' src='https://app.sidigaber.org/bank/${data.front}' /></div>`:'N/A'}</div>
   </div>
   </div>
 

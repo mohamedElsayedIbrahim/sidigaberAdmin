@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('json')->group(function(){
     Route::prefix('student')->group(function(){
         Route::post('show',[StudentController::class,'student_info']);
+        Route::post('pay/recipt',[StudentController::class,'student_bank']);
         Route::post('get/payment/info',[StudentController::class,'student_data']);
         Route::get('expense/{id}/show',[ExpenseController::class,'show']);
     });

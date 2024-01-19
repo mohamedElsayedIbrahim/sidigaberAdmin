@@ -93,13 +93,13 @@
               <small class="text-capitalize">front face</small>
               <div id="frontImage"><img src="" alt="recipt backface" class="w-100"></div>
 
-              <form id="formUpdate" method="POST" class="row g-3 needs-validation" novalidate>
+              <form id="formUpdate2" method="POST" class="row g-3 needs-validation" novalidate>
                 
                 @csrf
 
                 <div class="col-md-12 mb-3">
-                  <label for="validationServer04" class="form-label">State</label>
-                  <select class="form-select" name="paymentStatus" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                  <label for="validationServer042" class="form-label">State</label>
+                  <select class="form-select" name="paymentStatus" id="validationServer042" aria-describedby="validationServer04Feedback" required>
                     <option value="">Choose...</option>
                     <option value="paid">valid</option>
                     <option value="un-paid">invalid</option>
@@ -121,8 +121,8 @@
           <form id="formUpdate" class="row w-100 needs-validation" method="POST" novalidate>
             @csrf
             <div class="col-md-12 mb-3">
-              <label for="validationServer04" class="form-label">@lang('dashboard.paid')</label>
-              <select class="form-select" name="paymentStatus" id="validationServer04" required>
+              <label for="validationServer0411" class="form-label">@lang('dashboard.paid')</label>
+              <select class="form-select" name="paymentStatus" id="validationServer0411" required>
                 <option selected disabled value="">@lang('dashboard.choose')</option>
                 <option value="paid">@lang('dashboard.paid.true')</option>
                 <option value="un-paid">@lang('dashboard.paid.false')</option>
