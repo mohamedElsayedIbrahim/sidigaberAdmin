@@ -13,8 +13,8 @@ class AdmissionService{
     }
 
     public static function download_all_data(array $branches) : object | array |null {
-        
-        $response = Http::withToken(env('API_KEY_SECRET'))->withHeaders(['Content-Type'=>'application/json'])->post("https://app.sidigaber.org/api/admission/file/download",['branch'=>$branches]);
+        set_time_limit(1000);
+        $response = Http::timeout(100)->withToken(env('API_KEY_SECRET'))->withHeaders(['Content-Type'=>'application/json'])->post("https://app.sidigaber.org/api/admission/file/download",['branch'=>$branches]);
 
         return $response->json();
     }
