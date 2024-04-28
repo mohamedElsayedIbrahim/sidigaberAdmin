@@ -28,6 +28,7 @@ class ExpenseResource extends JsonResource
             'status'=>$this->depoisit,
             'front'=>$this->front,
             'back'=>$this->back,
+            'dateEnd'=>$this->dateEnd,
         ];
     }
 }
