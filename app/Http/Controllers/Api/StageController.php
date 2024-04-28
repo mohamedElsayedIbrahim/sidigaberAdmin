@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 class StageController extends Controller
 {
     public function get_branch_stage(Branch $branch){
-
         return $this->sendResponse(StageResource::collection($branch->stages));
     }
 }

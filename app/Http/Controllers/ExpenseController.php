@@ -105,13 +105,14 @@ class ExpenseController extends Controller
             'yearSchool'=>'required|exists:academicyears,id',
             'expense'=>'required',
             'type'=>'required',
+            'dateEnd'=>'required'
         ]);
 
         $branches = array_map(function($branch){
             return $branch['id'];
         },Auth::user()->branches->toArray());
 
-        $students = StudentEnrollments::whereIn('branch_id',$branches)->get();
+        $students = StudentEnrollments::whereIn('branch_id',$branches)->where('academicyear_id','=',$request->yearSchool)->get();
 
         foreach($students as $student)
         {
@@ -119,7 +120,8 @@ class ExpenseController extends Controller
                 'student_enrollment_id'=>$student->id,
                 'fees'=>$request->expense,
                 'type'=>'school',
-                'depoisit'=>$request->type
+                'depoisit'=>$request->type,
+                'dateEnd'=>$request->dateEnd
             ]);
         }
 

@@ -52,7 +52,7 @@ class StudentController extends Controller
             'student_enrollment_id'=>$record,
             'fees'=>$request->fees,
             'type'=>'school',
-            'depoisit'=>'قسط اول'
+            'depoisit'=>$request->type
         ]);
 
         User::create([

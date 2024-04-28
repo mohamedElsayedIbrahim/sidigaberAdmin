@@ -10,7 +10,7 @@ class Branch extends Model
     protected $fillable = ['title','alise'];
 
     function stages(){
-        return $this->belongsToMany('App\Stage');
+        return $this->belongsToMany(Stage::class);
     }
 
     function users(){

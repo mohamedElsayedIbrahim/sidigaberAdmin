@@ -28,6 +28,7 @@
                     <label for="expensesType" class="form-label text-capitalize">@lang('dashboard.academicyears.index')</label>
                     <select class="form-select" name="type" id="expensesType" required>
                         <option selected disabled value="">@lang('dashboard.choose')</option>
+                        <option value="شير">Share</option>
                         <option value="مصروفات دراسية">All expenses</option>
                         <option value="قسط الاول">1st expense</option>
                         <option value="قسط ثانى">2nd expense</option>
@@ -44,6 +45,14 @@
                       Please provide a valid Expenses.
                     </div>
                 </div>
+
+                <div class="col-md-6">
+                  <label for="validationCustom08110" class="form-label">Last date</label>
+                  <input type="date" name="dateEnd" class="form-control" id="validationCustom08110" required>
+                  <div class="invalid-feedback">
+                    Please provide a valid Date.
+                  </div>
+              </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('site.modal.close')</button>

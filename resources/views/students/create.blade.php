@@ -77,9 +77,9 @@
                 <h2>student Enrollments</h2>
                 
                 <div class="row mb-3">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="school" class="form-label">school</label>
-                        <select class="form-control" name="school" id="school"  required>
+                        <select class="form-control form-select" name="school" id="school"  required>
                             <option>select student school</option>
                             @foreach ($branches as $branche)
                             <option value="{{$branche->id}}" {{ old('school') == $branche->id ? 'selected':'' }}>{{$branche->title}}</option>
@@ -91,9 +91,9 @@
                         @endif
                     </div>
     
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="stage" class="form-label">stage</label>
-                        <select disabled class="form-control" name="stage" id="stage"  required>
+                        <select disabled class="form-control form-select" name="stage" id="stage"  required>
                             <option>select student stage</option>
                             
                         </select>
@@ -103,7 +103,7 @@
                         @endif
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="fees" class="form-label">Educational fees</label>
                         <input value="{{ old('fees') }}" 
                         type="number" 
@@ -112,6 +112,20 @@
                         placeholder="Educational fees" autocomplete="off">
                         @if ($errors->has('fees'))
                             <span class="text-danger text-left">{{ $errors->first('fees') }}</span>
+                        @endif
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="type" class="form-label">Expense type</label>
+                        <select class="form-select" name="type" id="type" required>
+                            <option selected disabled value="">@lang('dashboard.choose')</option>
+                            <option value="شير">Share</option>
+                            <option value="مصروفات دراسية">All expenses</option>
+                            <option value="قسط الاول">1st expense</option>
+                            <option value="قسط ثانى">2nd expense</option>
+                        </select>
+                        @if ($errors->has('type'))
+                            <span class="text-danger text-left">{{ $errors->first('type') }}</span>
                         @endif
                     </div>
                 </div>
