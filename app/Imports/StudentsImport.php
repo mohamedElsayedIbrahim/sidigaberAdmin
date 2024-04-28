@@ -22,7 +22,7 @@ class StudentsImport implements ToCollection, WithHeadingRow
     public function collection (Collection $rows)
     {
 
-        $year = Academicyear::where('year','=',Carbon::now()->format('Y').'/'.Carbon::now()->addYear()->format('Y'))->first();
+        $year = Academicyear::where('year','=',Carbon::now()->format('Y')."/".Carbon::now()->addYear()->format('Y'))->first();
         
         foreach ($rows as $row) 
         {
@@ -44,7 +44,8 @@ class StudentsImport implements ToCollection, WithHeadingRow
                 'student_enrollment_id'=>$record,
                 'fees'=>$row['fees'],
                 'type'=>$row['type'],
-                'depoisit'=>$row['depoisit']
+                'depoisit'=>$row['depoisit'],
+                'dateEnd'=>$row['date']
             ]);
             // I1$@vGU8L@Iu
             User::create([
