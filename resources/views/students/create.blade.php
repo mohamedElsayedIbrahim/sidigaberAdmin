@@ -119,7 +119,7 @@
                         <label for="type" class="form-label">Expense type</label>
                         <select class="form-select" name="type" id="type" required>
                             <option selected disabled value="">@lang('dashboard.choose')</option>
-                            <option value="شير">Share</option>
+                            <option value="تأمين">Share</option>
                             <option value="مصروفات دراسية">All expenses</option>
                             <option value="قسط الاول">1st expense</option>
                             <option value="قسط ثانى">2nd expense</option>
