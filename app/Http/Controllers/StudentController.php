@@ -79,10 +79,18 @@ class StudentController extends Controller
     public function update(Student $student, UpdateSturentRequest $request)
     {
         $student_id = $student->id;
+
         $student->update($request->validated());
-        $orginal = $student->getOriginal();
-        $user= User::where('name','=',$student_id)->first();
-        $user->update([
+        // $orginal = $student->getOriginal();
+        
+        $user= User::where('name','=',"$student_id")->first();
+
+        if ($user) {
+            # code...
+            $user->delete();
+        }
+
+        User::create([
             'name'=> $request->id,
             'password' => Hash::make($request->id),
             'email'=>"student-".$request->id."@app.com",
