@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expense;
-use App\Models\Student;
 use App\Services\EnrollService;
 use App\Models\StudentEnrollments;
+use App\Services\AcademicyearService;
+use App\Services\HelperService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -25,6 +26,13 @@ class ExpenseController extends Controller
         },Auth::user()->branches->toArray());
 
         $expenses = Expense::orderBy('updated_at','DESC')->get();
+        $year = AcademicyearService::current_year();
+
+        $student = StudentEnrollments::wherein('branch_id',HelperService::branch_ids(Auth::user()))->where('academicyear_id ','=',$year)->get();
+
+        dd($student);
+
+
         $passed = $expenses->filter(function ($expense) {
             if(in_array($expense->student_enrollment->branch_id,array_map(function($branch){
                 return $branch['id'];

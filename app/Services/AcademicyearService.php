@@ -6,6 +6,7 @@ use App\Models\Academicyear;
 use Carbon\Carbon;
 
 class AcademicyearService {
+    
     public static function current_year() {
         $year = Academicyear::where('year','=',Carbon::now()->format('Y').'/'.Carbon::now()->addYear()->format('Y'))->first();
         return $year;

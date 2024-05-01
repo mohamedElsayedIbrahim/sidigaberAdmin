@@ -87,6 +87,7 @@
          <th>Date</th>
          <th width="3%" colspan="3">Action</th>
       </tr>
+      
         @foreach ($expenses as $expense)
         
         <tr>
