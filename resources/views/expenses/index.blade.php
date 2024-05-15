@@ -105,7 +105,7 @@
       
         @foreach ($expenses as $expense)
         
-            @if ($expense->student_enrollment->academicyear_id === (int)$year['id'])
+            @if ((int)$expense->student_enrollment->academicyear_id === (int)$year['id'])
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $expense->student_enrollment->student->fullname }}</td>
