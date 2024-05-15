@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Academicyear;
 use App\Models\Expense;
 use App\Services\EnrollService;
 use App\Models\StudentEnrollments;
@@ -26,12 +27,9 @@ class ExpenseController extends Controller
         },Auth::user()->branches->toArray());
 
         $expenses = Expense::orderBy('updated_at','DESC')->get();
-        // $year = AcademicyearService::current_year();
+        $academic = Academicyear::all();
 
-        // $student = StudentEnrollments::wherein('branch_id',HelperService::branch_ids(Auth::user()))->where('academicyear_id ','=',$year)->get();
-
-        // dd($student);
-
+        $year = AcademicyearService::current_year();
 
         $passed = $expenses->filter(function ($expense) {
             if(in_array($expense->student_enrollment->branch_id,array_map(function($branch){
@@ -42,16 +40,25 @@ class ExpenseController extends Controller
         });
 
         
-        return view('expenses.index',['expenses'=>$passed,'branches'=>$branches]);
+        return view('expenses.index',['expenses'=>$passed,'branches'=>$branches,'academic'=>$academic,'year'=>$year]);
     }
 
     public function search()
     {
+
         $branches = array_map(function($branch){
             return $branch['id'];
         },Auth::user()->branches->toArray());
 
         
+        $academic = Academicyear::all();
+        $year = AcademicyearService::current_year();
+
+        if (request()->query('academic') !== null) {
+            # code...
+            $year = ['id'=>request()->query('academic')];
+        }
+
         $expenses = Expense::where(function(Builder $query){
             if (request()->get('upload_file') != null && request()->get('upload_file') == "true") {
                 $query->whereNotNull('front')->whereNotNull('back');
@@ -68,17 +75,19 @@ class ExpenseController extends Controller
         })->orderBy('updated_at','DESC')->get();
 
         if (request()->get('upload_file') == null){
-            return redirect()->route('expenses.index');
-        } else {
-            $passed = $expenses->filter(function ($expense) {
-                if(in_array($expense->student_enrollment->branch_id,array_map(function($branch){
-                    return $branch['id'];
-                },Auth::user()->branches->toArray()))){
-                    return $expense;
-                }
-            });
+            $expenses = Expense::orderBy('updated_at','DESC')->get();
+
         }
-        return view('expenses.index',['expenses'=>$passed]);
+
+        $passed = $expenses->filter(function ($expense) {
+            if(in_array($expense->student_enrollment->branch_id,array_map(function($branch){
+                return $branch['id'];
+            },Auth::user()->branches->toArray()))){
+                return $expense;
+            }
+        });
+
+        return view('expenses.index',['expenses'=>$passed,'branches'=>$branches,'academic'=>$academic,'year'=>$year]);
 
     }
 

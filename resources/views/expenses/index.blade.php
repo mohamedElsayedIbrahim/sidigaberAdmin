@@ -49,7 +49,7 @@
         <form action="{{ route('filter.expense') }}" class="row g-3 needs-validation align-items-center" novalidate method="GET">
             <div class="col-md-3">
                 <label for="validationCustom010" class="form-label">File Status</label>
-                <select class="form-select" name="upload_file" id="validationCustom010" required>
+                <select class="form-select" name="upload_file" id="validationCustom010">
                   <option selected disabled value="">Choose...</option>
                   <option {{request()->get('upload_file') == 'true' ? 'selected':''}} value="true">Uploaded File</option>
                   <option {{request()->get('upload_file') == 'false' ? 'selected':''}}value="false">Not Uploaded File</option>
@@ -58,6 +58,21 @@
                   Please select a valid state.
                 </div>
             </div>
+
+            <div class="col-md-3">
+                <label for="validationCustom010" class="form-label">Academy Year</label>
+                <select class="form-select" name="academic" id="validationCustom010">
+                  <option selected disabled value="">Choose...</option>
+                  @foreach ($academic as $item)
+                  <option {{request()->get('academic') == $item->id ? 'selected':''}} value="{{$item->id}}">{{$item->year}}</option>
+                      
+                  @endforeach
+                  </select>
+                <div class="invalid-feedback">
+                  Please select a valid state.
+                </div>
+            </div>
+
             <div class="col-md-3">
                 <label for="validationCustom0911" class="form-label">Paied Status</label>
                 <select class="form-select" name="paied_status" id="validationCustom0911">
@@ -90,27 +105,30 @@
       
         @foreach ($expenses as $expense)
         
-        <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $expense->student_enrollment->student->fullname }}</td>
-            <td>{{ $expense->student_enrollment->branch->title }}</td>
-            <td>{{ $expense->type}}</td>
-            <td>{{ $expense->pay  == '0' ? __('dashboard.pay.false'): __('dashboard.pay.true') }}</td>
-            <td>{{ $expense->front  == null && $expense->back == null ? __('dashboard.upload.false'): __('dashboard.upload.true') }}</td>
-            <td>{{ $expense->updated_at->format('d/m/Y H:i A') }}</td>
-            <td>
-                <button type="button" data-expence="{{$expense->id}}" class="btn btn-primary btn-sm btnshow" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    show
-                </button>
+            @if ($expense->student_enrollment->academicyear_id === (int)$year['id'])
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $expense->student_enrollment->student->fullname }}</td>
+                    <td>{{ $expense->student_enrollment->branch->title }}</td>
+                    <td>{{ $expense->type}}</td>
+                    <td>{{ $expense->pay  == '0' ? __('dashboard.pay.false'): __('dashboard.pay.true') }}</td>
+                    <td>{{ $expense->front  == null && $expense->back == null ? __('dashboard.upload.false'): __('dashboard.upload.true') }}</td>
+                    <td>{{ $expense->updated_at->format('d/m/Y H:i A') }}</td>
+                    <td>
+                        <button type="button" data-expence="{{$expense->id}}" class="btn btn-primary btn-sm btnshow" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            show
+                        </button>
 
-                <button type="button" data-expence="{{$expense->id}}" class="btn btn-warning btn-sm btnedit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-                    Edit
-                </button>
-            </td>
-            <td>
-                <a class="btn btn-danger btn-sm" href="{{ route('expenses.destroy', $expense->id) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-            </td>
-        </tr>
+                        <button type="button" data-expence="{{$expense->id}}" class="btn btn-warning btn-sm btnedit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
+                            Edit
+                        </button>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" href="{{ route('expenses.destroy', $expense->id) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            @endif
+        
         @endforeach
     </table>
 </div>
