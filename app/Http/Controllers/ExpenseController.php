@@ -26,11 +26,11 @@ class ExpenseController extends Controller
         },Auth::user()->branches->toArray());
 
         $expenses = Expense::orderBy('updated_at','DESC')->get();
-        $year = AcademicyearService::current_year();
+        // $year = AcademicyearService::current_year();
 
-        $student = StudentEnrollments::wherein('branch_id',HelperService::branch_ids(Auth::user()))->where('academicyear_id ','=',$year)->get();
+        // $student = StudentEnrollments::wherein('branch_id',HelperService::branch_ids(Auth::user()))->where('academicyear_id ','=',$year)->get();
 
-        dd($student);
+        // dd($student);
 
 
         $passed = $expenses->filter(function ($expense) {
@@ -189,7 +189,13 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
+        $request->validate([
+            'ReciptAmount'=>'required'
+        ]);
+
         //
+        $expense->update(['fees'=>$request->ReciptAmount]);
+        return back()->with('message','student fees updated successfully');
     }
 
     /**

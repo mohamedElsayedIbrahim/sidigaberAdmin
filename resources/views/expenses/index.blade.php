@@ -102,6 +102,10 @@
                 <button type="button" data-expence="{{$expense->id}}" class="btn btn-primary btn-sm btnshow" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     show
                 </button>
+
+                <button type="button" data-expence="{{$expense->id}}" class="btn btn-warning btn-sm btnedit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
+                    Edit
+                </button>
             </td>
             <td>
                 <a class="btn btn-danger btn-sm" href="{{ route('expenses.destroy', $expense->id) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -111,14 +115,15 @@
     </table>
 </div>
 
+<x-expense.edit></x-expense.edit>
 <x-expense.show></x-expense.show>
 <x-bus-expenses></x-bus-expenses>
 <x-school-expenses></x-school-expenses>
 @endsection
 
-@section('js')
-            
+@section('js')        
     <script src="{{ asset('js/zoomist.min.js') }}"></script>
-    <script type="module" src="{{ asset('js/Api/expenses/show.js') }}"></script>
+    <script type="module" src="{{ asset('js/Api/expenses/show.js') }}?v={{env('ASSETS_VERSION')}}"></script>
+    <script type="module" src="{{ asset('js/Api/expenses/update.js') }}?v={{env('ASSETS_VERSION')}}"></script>
     <script src="{{ asset('js/web/expense.js') }}"></script>
 @endsection

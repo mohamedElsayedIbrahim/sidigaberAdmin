@@ -5,7 +5,7 @@ let btns = document.querySelectorAll('.btnshow');
 if (btns.length > 0) {
     btns.forEach(element => {
         element.addEventListener('click',async function(){
-            let dialog = document.querySelector('.modal-content');
+            let dialog = document.querySelector('#exampleModal .modal-content');
             let el = loader(dialog);
             let expence = this.dataset.expence;
             //init the api
@@ -13,7 +13,7 @@ if (btns.length > 0) {
             let response = await fetch(`${location.origin}/${expence}/show`,headers);
             let {data} = await response.json();
             //display Data
-            document.querySelector('.modal-body').innerHTML = display(data);
+            document.querySelector('#exampleModal .modal-body').innerHTML = display(data);
             //set system api injection data
             document.getElementById('formUpdate').action = `${location.origin}/expenses/${expence}/update/status`;
             if (data.pay == "paied") {
