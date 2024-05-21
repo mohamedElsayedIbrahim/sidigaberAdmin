@@ -76,6 +76,7 @@ Route::middleware('site.lang')->group(function(){
             Route::post('/create', [UsersController::class,'store'])->name('users.store');
             Route::get('/{user}/show', [UsersController::class,'show'])->name('users.show');
             Route::get('/{user}/edit', [UsersController::class,'edit'])->name('users.edit');
+            Route::get('/{user}/reset-password', [UsersController::class,'resetpassword'])->name('users.resetpassword');
             Route::patch('/{user}/update', [UsersController::class,'update'])->name('users.update');
             Route::delete('/{user}/delete', [UsersController::class,'destroy'])->name('users.destroy');
         });

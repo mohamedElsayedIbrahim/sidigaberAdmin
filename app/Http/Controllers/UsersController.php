@@ -117,4 +117,14 @@ class UsersController extends Controller
         return redirect()->route('users.index')
             ->withSuccess(__('User deleted successfully.'));
     }
+
+    public function resetpassword(User $user) {
+        
+        try {
+            $user->update(['password'=>Hash::make('pass123')]);
+            return back()->with('message',__('success.submitted'));
+        } catch (\Throwable $th) {
+            return back()->with('message',$th->getMessage());
+        }
+    }
 }

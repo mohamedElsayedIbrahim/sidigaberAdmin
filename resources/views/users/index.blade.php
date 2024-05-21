@@ -54,6 +54,7 @@
                                 <span class="badge bg-primary">{{ $role->name }}</span>
                             @endforeach
                         </td>
+                        <td><a href="{{ route('users.resetpassword', $user->id) }}" class="btn btn-dark btn-sm">Reset</a></td>
                         <td><a href="{{ route('users.show', $user->id) }}" class="btn btn-warning btn-sm">Show</a></td>
                         <td><a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-sm">Edit</a></td>
                         <td>
