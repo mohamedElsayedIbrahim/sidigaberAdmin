@@ -18,7 +18,6 @@ if (editBtns.length > 0) {
 
             body.append(display(data,body.dataset.token));
             
-            console.log(data);
             setTimeout(() => {
                 el.classList.replace('d-flex','d-none')
             }, 1000);
@@ -28,6 +27,7 @@ if (editBtns.length > 0) {
 
 function display(data, token)
 {
+
     let form = document.createElement('form');
     form.method = 'POST';
     form.action = `${location.origin}/expenses/${data.id}/update`;
@@ -41,7 +41,7 @@ function display(data, token)
     label.innerText = 'Fees';
 
     let input = document.createElement('input');
-    input.classList.add('form-control');
+    input.classList.add('form-control','mb-3');
     input.type='number'
     input.id = 'ReciptAmount';
     input.value = data.fees;
@@ -52,6 +52,18 @@ function display(data, token)
     csrf.value = token;
     csrf.name = '_token';
 
+    let labelDate = document.createElement('label');
+    labelDate.classList.add('form-label');
+    labelDate.setAttribute('for','enddate');
+    labelDate.innerText = 'Due Date';
+
+    let enddate = document.createElement('input');
+    enddate.type = 'date';
+    enddate.value = data.dateEnd;
+    input.id = 'enddate';
+    enddate.classList.add('form-control','mb-3');
+    enddate.name = 'enddate';
+
     let btn = document.createElement('button');
     btn.type = 'submit';
     btn.classList.add('btn','btn-primary');
@@ -59,6 +71,8 @@ function display(data, token)
 
     continer.append(label);
     continer.append(input);
+    continer.append(labelDate);
+    continer.append(enddate);
     form.append(csrf);
     form.append(continer);
     form.append(btn);

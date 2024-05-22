@@ -199,11 +199,12 @@ class ExpenseController extends Controller
     public function update(Request $request, Expense $expense)
     {
         $request->validate([
-            'ReciptAmount'=>'required'
+            'ReciptAmount'=>'required',
+            'enddate'=>'required'
         ]);
 
         //
-        $expense->update(['fees'=>$request->ReciptAmount]);
+        $expense->update(['fees'=>$request->ReciptAmount,'dateEnd'=>$request->enddate]);
         return back()->with('message','student fees updated successfully');
     }
 
