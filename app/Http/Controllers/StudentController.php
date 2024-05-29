@@ -52,7 +52,8 @@ class StudentController extends Controller
             'student_enrollment_id'=>$record,
             'fees'=>$request->fees,
             'type'=>'school',
-            'depoisit'=>$request->type
+            'depoisit'=>$request->type,
+            'dateEnd'=>Carbon::now()->addWeek(),
         ]);
 
         User::create([
