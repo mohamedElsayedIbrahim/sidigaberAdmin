@@ -14,6 +14,7 @@ use App\Models\Stage;
 use App\Models\Student;
 use App\Models\StudentEnrollments;
 use App\Models\User;
+use App\Services\UserService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,11 @@ class StudentController extends Controller
     public function store(Student $student, StoreSturentRequest $request)
     {
 
+        if (!StudentService::exisit_student($request->id)) {
+            # code...
+            return redirect()->route('students.index')->with('error','Student is already exisit');
+        }
+
         $student->create($request->validated());
         $year = Academicyear::where('year','=',Carbon::now()->format('Y').'/'.Carbon::now()->addYear()->format('Y'))->first();
         $record = $student->enrollments(array_merge($request->all(),[
@@ -56,12 +62,16 @@ class StudentController extends Controller
             'dateEnd'=>Carbon::now()->addWeek(),
         ]);
 
-        User::create([
-            'name'=> $request->id,
-            'password' => Hash::make($request->id),
-            'email'=>"student-".$request->id."@app.com",
-            'type'=>'student'
-        ]);
+        if (!UserService::is_exisit($request->id)) {
+            # code...
+            User::create([
+                'name'=> $request->id,
+                'password' => Hash::make($request->id),
+                'email'=>"student-".$request->id."@app.com",
+                'type'=>'student'
+            ]);
+        }
+        
         
         return redirect()->route('students.index')
                         ->with('message','student created successfully');

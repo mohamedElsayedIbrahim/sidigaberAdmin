@@ -12,4 +12,16 @@ class StudentService {
 
         return $students;
     }
+
+    static function exisit_student($id) : bool {
+        $student = Student::find($id);
+
+        if ($student == null) {
+            # code...
+            return true;
+        }
+
+        return false;
+
+    }
 }
