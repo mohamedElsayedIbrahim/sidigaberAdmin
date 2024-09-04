@@ -24,9 +24,9 @@
 <x-alert></x-alert>
 
     <div class="bg-light p-4 rounded">
-        <h1>Add new branch</h1>
+        <h1>Add new student</h1>
         <div class="lead">
-            Add new branch and assign role.
+            Add new student and assign role.
         </div>
 
         <div class="container mt-4">
@@ -131,7 +131,7 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-primary">Save Branch</button>
+                <button type="submit" class="btn btn-primary">Save student</button>
                 <a href="{{ route('students.index') }}" class="btn btn-default">Back</a>
             </form>
         </div>

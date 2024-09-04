@@ -32,6 +32,7 @@ return[
 'choose'=>'Choose...',
 'error'=>'error occurs while updating',
 'pay.bus'=>'Enable student to pay Bus',
+'pay.bus.all'=>'Enable All students to pay Bus',
 'admission.index'=>'students admission',
 'pay.school'=>'Deployee School expenses',
 'expenses.type'=>'Expenses type'

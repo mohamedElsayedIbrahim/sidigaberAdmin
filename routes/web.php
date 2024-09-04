@@ -182,6 +182,7 @@ Route::middleware('site.lang')->group(function(){
             Route::get('/', [ExpenseController::class,'index'])->name('expenses.index');
             Route::get('{expense}/edit', [ExpenseController::class,'create'])->name('expenses.edit');
             Route::Post('/bus/expense', [ExpenseController::class,'bus_expenses'])->name('expenses.bus');
+            Route::Post('/bus/expense/all', [ExpenseController::class,'bus_all_expenses'])->name('expenses.bus.all');
             Route::Post('/school/expense', [ExpenseController::class,'school_expenses'])->name('expenses.school');
             Route::post('{expense}/update', [ExpenseController::class,'update'])->name('expenses.update');
             Route::get('{expense}/delete', [ExpenseController::class,'destroy'])->name('expenses.destroy');

@@ -117,6 +117,35 @@ class ExpenseController extends Controller
         }
     }
 
+    function bus_all_expenses(Request $request) {
+
+        $request->validate([
+            'yearSchool'=>'required|exists:academicyears,id',
+            'expense'=>'required',
+            'dateEnd'=>'required'
+        ]);
+
+        $branches = array_map(function($branch){
+            return $branch['id'];
+        },Auth::user()->branches->toArray());
+
+        $students = StudentEnrollments::whereIn('branch_id',$branches)->where('academicyear_id','=',$request->yearSchool)->get();
+
+        foreach($students as $student)
+        {
+            Expense::create([
+                'student_enrollment_id'=>$student->id,
+                'fees'=>$request->expense,
+                'type'=>'bus',
+                'depoisit'=>'سنة دراسية',
+                'dateEnd'=>$request->dateEnd
+            ]);
+        }
+
+        return back()->with('message','Sccussfuly done!');
+
+    }
+
     function school_expenses(Request $request) {
         $request->validate([
             'yearSchool'=>'required|exists:academicyears,id',

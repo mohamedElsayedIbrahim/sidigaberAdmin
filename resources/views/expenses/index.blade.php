@@ -38,6 +38,11 @@
   <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#schoolExpenses">
     @lang('dashboard.pay.school')
 </button>
+
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#busExpensesForAll">
+    @lang('dashboard.pay.bus.all')
+</button>
+
     </div>
     
     <div class="mt-2">
@@ -136,6 +141,7 @@
 <x-expense.edit></x-expense.edit>
 <x-expense.show></x-expense.show>
 <x-bus-expenses></x-bus-expenses>
+<x-bus-for-all-students></x-bus-for-all-students>
 <x-school-expenses></x-school-expenses>
 @endsection
 
