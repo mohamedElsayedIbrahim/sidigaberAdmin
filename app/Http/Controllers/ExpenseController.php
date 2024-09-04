@@ -200,11 +200,12 @@ class ExpenseController extends Controller
     {
         $request->validate([
             'ReciptAmount'=>'required',
-            'enddate'=>'required'
+            'enddate'=>'required',
+            'type'=>'required'
         ]);
 
         //
-        $expense->update(['fees'=>$request->ReciptAmount,'dateEnd'=>$request->enddate]);
+        $expense->update(['fees'=>$request->ReciptAmount,'dateEnd'=>$request->enddate,'type'=>$request->type]);
         return back()->with('message','student fees updated successfully');
     }
 

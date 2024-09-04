@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="expensesType" class="form-label text-capitalize">@lang('dashboard.academicyears.index')</label>
+                    <label for="expensesType" class="form-label text-capitalize">@lang('dashboard.expenses.type')</label>
                     <select class="form-select" name="type" id="expensesType" required>
                         <option selected disabled value="">@lang('dashboard.choose')</option>
                         <option value="شير">Share</option>

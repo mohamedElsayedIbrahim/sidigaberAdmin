@@ -60,9 +60,39 @@ function display(data, token)
     let enddate = document.createElement('input');
     enddate.type = 'date';
     enddate.value = data.dateEnd;
-    input.id = 'enddate';
+    enddate.id = 'enddate';
     enddate.classList.add('form-control','mb-3');
     enddate.name = 'enddate';
+
+    let labelType = document.createElement('label');
+    labelType.classList.add('form-label');
+    labelType.setAttribute('for','enddate');
+    labelType.innerText = 'Type';
+
+    let type = document.createElement('select');
+    type.id = 'enddate';
+    type.classList.add('form-select','mb-3');
+    type.name = 'type';
+
+    let option = document.createElement('option');
+    option.value = 'تأمين';
+    option.innerText = 'share';
+    type.append(option);
+
+    option = document.createElement('option');
+    option.value = 'مصروفات دراسية';
+    option.innerText = 'All expenses';
+    type.append(option);
+
+    option = document.createElement('option');
+    option.value = 'قسط الاول';
+    option.innerText = '1st expense';
+    type.append(option);
+
+    option = document.createElement('option');
+    option.value = 'قسط ثانى';
+    option.innerText = '2nd expense';
+    type.append(option);
 
     let btn = document.createElement('button');
     btn.type = 'submit';
@@ -73,6 +103,9 @@ function display(data, token)
     continer.append(input);
     continer.append(labelDate);
     continer.append(enddate);
+    continer.append(labelType);
+    continer.append(type);
+
     form.append(csrf);
     form.append(continer);
     form.append(btn);
