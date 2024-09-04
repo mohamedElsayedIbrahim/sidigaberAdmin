@@ -205,7 +205,7 @@ class ExpenseController extends Controller
         ]);
 
         //
-        $expense->update(['fees'=>$request->ReciptAmount,'dateEnd'=>$request->enddate,'type'=>$request->type]);
+        $expense->update(['fees'=>$request->ReciptAmount,'dateEnd'=>$request->enddate,'depoisit'=>$request->type]);
         return back()->with('message','student fees updated successfully');
     }
 
