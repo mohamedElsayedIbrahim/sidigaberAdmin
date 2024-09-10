@@ -15,8 +15,8 @@
                 @csrf
 
                 <div class="col-md-6">
-                    <label for="academicYearListSchool" class="form-label text-capitalize">@lang('dashboard.academicyears.index')</label>
-                    <select class="form-select" name="yearSchool" id="academicYearListSchool" required>
+                    <label for="academicYearListSchool2" class="form-label text-capitalize">@lang('dashboard.academicyears.index')</label>
+                    <select class="form-select" name="yearSchool" id="academicYearListSchool2" required>
                       <option selected disabled value="">@lang('dashboard.choose')</option>
                     </select>
                     <div class="invalid-feedback">

@@ -40,6 +40,7 @@ async function getAcademic()
         }
         document.getElementById('academicYearList').insertAdjacentHTML('beforeend',cartonna);
         document.getElementById('academicYearListSchool').insertAdjacentHTML('beforeend',cartonna);
+        document.getElementById('academicYearListSchool2').insertAdjacentHTML('beforeend',cartonna);
     }
 
 }

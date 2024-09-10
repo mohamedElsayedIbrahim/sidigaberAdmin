@@ -101,7 +101,7 @@
          <th width="1%">No</th>
          <th>Name</th>
          <th>School</th>
-         <th>Type</th>
+         <th colspan="2">Type</th>
          <th>Paied status</th>
          <th>Upload Reciept</th>
          <th>Date</th>
@@ -116,6 +116,7 @@
                     <td>{{ $expense->student_enrollment->student->fullname }}</td>
                     <td>{{ $expense->student_enrollment->branch->title }}</td>
                     <td>{{ $expense->type}}</td>
+                    <td>{{ $expense->depoisit}}</td>
                     <td>{{ $expense->pay  == '0' ? __('dashboard.pay.false'): __('dashboard.pay.true') }}</td>
                     <td>{{ $expense->front  == null && $expense->back == null ? __('dashboard.upload.false'): __('dashboard.upload.true') }}</td>
                     <td>{{ $expense->updated_at->format('d/m/Y H:i A') }}</td>
@@ -149,5 +150,5 @@
     <script src="{{ asset('js/zoomist.min.js') }}"></script>
     <script type="module" src="{{ asset('js/Api/expenses/show.js') }}?v={{env('ASSETS_VERSION')}}"></script>
     <script type="module" src="{{ asset('js/Api/expenses/update.js') }}?v={{env('ASSETS_VERSION')}}"></script>
-    <script src="{{ asset('js/web/expense.js') }}"></script>
+    <script src="{{ asset('js/web/expense.js') }}?v={{env('ASSETS_VERSION')}}"></script>
 @endsection
