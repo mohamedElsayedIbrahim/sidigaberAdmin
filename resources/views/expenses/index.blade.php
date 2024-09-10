@@ -113,8 +113,8 @@
             @if ((int)$expense->student_enrollment->academicyear_id === (int)$year['id'])
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $expense->student_enrollment->student->fullname }}</td>
-                    <td>{{ $expense->student_enrollment->branch->title }}</td>
+                    <td>{{ $expense->student_enrollment->student->fullname}}</td>
+                    <td>{{ $expense->student_enrollment->branch->title}} ({{ $expense->student_enrollment->academicyear->year}})</td>
                     <td>{{ $expense->type}}</td>
                     <td>{{ $expense->depoisit}}</td>
                     <td>{{ $expense->pay  == '0' ? __('dashboard.pay.false'): __('dashboard.pay.true') }}</td>
