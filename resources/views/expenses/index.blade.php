@@ -43,6 +43,10 @@
     @lang('dashboard.pay.bus.all')
 </button>
 
+<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#schoolExpensesForStudnet">
+    @lang('dashboard.student.school')
+  </button>
+
     </div>
     
     <div class="mt-2">
@@ -144,6 +148,8 @@
 <x-bus-expenses></x-bus-expenses>
 <x-bus-for-all-students></x-bus-for-all-students>
 <x-school-expenses></x-school-expenses>
+<x-school-expenses-for-student></x-school-expenses-for-student>
+
 @endsection
 
 @section('js')        

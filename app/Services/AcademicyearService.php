@@ -21,4 +21,8 @@ class AcademicyearService {
     {
         return Academicyear::select('id','year')->get();
     }
+
+    public static function current_year_id() : int {
+        return Academicyear::orderBy('id','DESC')->first()->id;
+    }
 }

@@ -117,6 +117,33 @@ class ExpenseController extends Controller
         }
     }
 
+    public function student_expenses(Request $request) {
+        $request->validate([
+            'year'=>'required|exists:academicyears,id',
+            'expense'=>'required',
+            'type'=>'required',
+            'students'=>'required',
+            'students:*'=>'exists:students,id'
+        ]);
+
+        try {
+            foreach($request->students as $student)
+            {
+                $id = EnrollService::get_enrollment_id($student,$request->year)->id;
+                Expense::create([
+                    'student_enrollment_id'=>$id,
+                    'fees'=>$request->expense,
+                    'type'=>'school',
+                    'depoisit'=>$request->type
+                ]);
+            }
+
+            return back()->with('message',__('success.submitted'));
+        } catch (\Throwable $th) {
+            return back()->with('message',$th->getMessage());
+        }
+    }
+
     function bus_all_expenses(Request $request) {
 
         $request->validate([

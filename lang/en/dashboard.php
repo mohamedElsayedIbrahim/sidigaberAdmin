@@ -35,5 +35,7 @@ return[
 'pay.bus.all'=>'Enable All students to pay Bus',
 'admission.index'=>'students admission',
 'pay.school'=>'Deployee School expenses',
-'expenses.type'=>'Expenses type'
+'expenses.type'=>'Expenses type',
+'student.school'=>'Student School expenses',
+
 ];

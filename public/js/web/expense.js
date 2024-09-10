@@ -1,9 +1,26 @@
 let addNewRowBtn = document.getElementById('addNewRow');
+let addNewRowSchool = document.getElementById('addNewRowSchool');
 let tblBody = document.getElementById('table-body');
+let tblBodySchool = document.getElementById('table-body-school');
 let headers = {method:'get',headers:{'content_type':'application/json'}};
 
 addNewRowBtn.addEventListener('click',async function(){
     tblBody.insertAdjacentHTML('afterbegin',`<tr>
+    <td>
+        <select class="form-select" name="students[]" id="validationCustom04" required>
+            <option selected disabled value="">choose.......</option>
+            ${await getStudent()}
+        </select>
+    </td>
+    <td>
+        <button class="btn btn-danger deleteRowBtn" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    </td>
+</tr>`);
+deleteButton();
+});
+
+addNewRowSchool.addEventListener('click',async function(){
+    tblBodySchool.insertAdjacentHTML('afterbegin',`<tr>
     <td>
         <select class="form-select" name="students[]" id="validationCustom04" required>
             <option selected disabled value="">choose.......</option>
@@ -39,6 +56,7 @@ async function getAcademic()
             cartonna += `<option value='${iterator.id}'>${iterator.year}</option>`;
         }
         document.getElementById('academicYearList').insertAdjacentHTML('beforeend',cartonna);
+        document.getElementById('academicYearList1').insertAdjacentHTML('beforeend',cartonna);
         document.getElementById('academicYearListSchool').insertAdjacentHTML('beforeend',cartonna);
         document.getElementById('academicYearListSchool2').insertAdjacentHTML('beforeend',cartonna);
     }
@@ -61,6 +79,15 @@ async function getStudent()
 
 async function initRow() {
     tblBody.insertAdjacentHTML('afterbegin',`<tr>
+    <td>
+        <select class="form-select" name="students[]" id="validationCustom04" required>
+            <option selected disabled value="">choose.......</option>
+            ${await getStudent()}
+        </select>
+    </td>
+</tr>`);
+
+tblBodySchool.insertAdjacentHTML('afterbegin',`<tr>
     <td>
         <select class="form-select" name="students[]" id="validationCustom04" required>
             <option selected disabled value="">choose.......</option>
