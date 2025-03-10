@@ -29,7 +29,8 @@ class ExpenseController extends Controller
         $expenses = Expense::orderBy('updated_at','DESC')->get();
         $academic = Academicyear::all();
 
-        $year = AcademicyearService::current_year();
+        // $year = AcademicyearService::current_year();
+        $year = Academicyear::orderBy('id','DESC')->first();
 
         $passed = $expenses->filter(function ($expense) {
             if(in_array($expense->student_enrollment->branch_id,array_map(function($branch){
